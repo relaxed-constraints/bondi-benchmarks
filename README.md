@@ -109,7 +109,18 @@ git clone https://github.com/relaxed-constraints/bondi-empty-project.git
 cd bondi-empty-project
 ```
 
-### 2. Install dependencies and run tests
+### 2. Remove the template remote
+
+Remove the remote to prevent accidental pushes to the template repository:
+
+```sh
+git remote remove origin
+```
+
+Your local files and commit history are unchanged. When you create a GitHub
+repository for your project, add its URL as the new `origin` remote.
+
+### 3. Install dependencies and run tests
 
 Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then run
 these commands from this directory:
