@@ -1,4 +1,4 @@
 # Project documentation
 
-Document your project, including research questions and experiment instructions
-for others to be able to reproduce your work.
+Start with the [documentation home](index.md). See [Documentation](documentation.md)
+for preview, build and template setup instructions.

@@ -1,5 +1,11 @@
 # BONDI empty project
 
+## Documentation
+
+The repository includes a ready-to-use Zensical site. See
+[Installation](docs/installation.md) and [Documentation setup](docs/documentation.md).
+Run `zensical serve` from an activated project environment to preview it.
+
 A minimal starting point for students building their own BONDI research project.
 It uses the same dependencies as [bondi-demo-project](https://github.com/relaxed-constraints/bondi-demo-project), 
 but starts with a barebones setup with one reusable function and examples of calling it from an experiment, a notebook and a test.
