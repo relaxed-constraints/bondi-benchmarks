@@ -12,6 +12,10 @@ def test_shared_defaults_keep_project_specific_features():
     cli = pytest.importorskip("relcon_docs.cli")
     assert cli.main(["configure", "--project", str(ROOT), "--check"]) == 0
     config = config_module.parse_config(str(ROOT / "mkdocs.yml"))
+    assert "admonition" in config["markdown_extensions"]
+    assert "pymdownx.details" in config["markdown_extensions"]
+    fences = config["mdx_configs"]["pymdownx.superfences"]["custom_fences"]
+    assert any(fence["name"] == "mermaid" for fence in fences)
     python = config["plugins"]["mkdocstrings"]["config"]["handlers"]["python"]
     assert python["paths"] == ["src"]
     assert python["options"]["show_root_heading"] is True

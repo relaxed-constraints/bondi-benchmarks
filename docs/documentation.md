@@ -159,3 +159,9 @@ installation page. Use `!!! note "Title"` with indented content for a callout.
 The copied `stylesheets/diagrams.css` defines light and dark diagram colors.
 Custom Mermaid block diagrams can use `fill:var(--jb-node-bg)`,
 `stroke:var(--jb-node-border)` and `color:var(--jb-diagram-text)` in their styles.
+
+## Shared authoring features
+
+Callouts (`!!! note`), collapsible notes (`??? tip`) and Mermaid fenced blocks
+are enabled by relcon-docs. No project-level Markdown extension settings are
+needed for them. Project-specific diagram styles remain local.

@@ -20,14 +20,6 @@ nav:
 extra_css:
 - stylesheets/relcon-docs.css
 - stylesheets/diagrams.css
-markdown_extensions:
-  admonition: {}
-  pymdownx.details: {}
-  pymdownx.superfences:
-    custom_fences:
-    - name: mermaid
-      class: mermaid
-      format: pymdownx.superfences.fence_code_format
 plugins:
   mkdocstrings:
     handlers:

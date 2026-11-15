@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Inherit callouts, collapsible notes and Mermaid support from relcon-docs.
+
 - Inherit Markdown exports and llms.txt directly from relcon-docs, removing
   duplicate project-level export configuration.
 
