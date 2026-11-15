@@ -4,7 +4,8 @@
 
 The repository includes a ready-to-use Zensical site. See
 [Installation](docs/installation.md) and [Documentation setup](docs/documentation.md).
-Run `zensical serve` from an activated project environment to preview it.
+Install documentation tools with `uv sync --locked --group docs`, then run
+`zensical serve` from the activated project environment to preview it.
 
 A minimal starting point for students building their own BONDI research project.
 It uses the same dependencies as [bondi-demo-project](https://github.com/relaxed-constraints/bondi-demo-project), 

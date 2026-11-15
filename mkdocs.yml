@@ -1,0 +1,43 @@
+# Project-owned settings override the shared relcon-docs defaults.
+INHERIT: .relcon-docs/base.yml
+site_name: BONDI Empty Project
+site_description: A starter for reproducible database research with BONDI and Yanex
+site_url: https://relaxed-constraints.github.io/bondi-empty-project/
+repo_url: https://github.com/relaxed-constraints/bondi-empty-project
+repo_name: relaxed-constraints/bondi-empty-project
+copyright: Copyright &copy; 2026 Relaxed Constraints
+nav:
+- Home: index.md
+- Getting started:
+  - Installation: installation.md
+  - Quickstart: quickstart.md
+- User guide: user-guide.md
+- Reference: reference.md
+- Results: results.md
+- Development:
+  - Contributing: development.md
+  - Documentation: documentation.md
+extra_css:
+- stylesheets/relcon-docs.css
+- stylesheets/diagrams.css
+markdown_extensions:
+  admonition: {}
+  pymdownx.details: {}
+  pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: pymdownx.superfences.fence_code_format
+plugins:
+  mkdocstrings:
+    handlers:
+      python:
+        paths:
+        - src
+        options:
+          show_root_heading: true
+          heading_level: 2
+  llmstxt:
+    sections:
+      Documentation:
+      - '*.md'

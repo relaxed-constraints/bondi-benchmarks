@@ -3,11 +3,12 @@
 Keep reusable logic in `src/` and add offline tests under `tests/`.
 Update docstrings and guides when behavior changes.
 
-With uv, `uv sync --locked` installs the development tools. With pip, install them
+With uv, `uv sync --locked --group docs` installs development and documentation tools. With pip, install them
 in the active environment:
 
 ```sh
 python -m pip install pytest ruff
+python -m pip install --group docs
 ```
 
 Run checks from the repository root:
@@ -16,6 +17,7 @@ Run checks from the repository root:
 pytest
 ruff check .
 ruff format --check .
+relcon-docs configure --check
 zensical build --strict
 ```
 

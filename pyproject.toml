@@ -13,8 +13,6 @@ dependencies = [
     "matplotlib>=3.11.2",
     "ipykernel>=7.4.0",
     "bondi==0.3.1",
-    "zensical>=0.1.1,<0.2",
-    "mkdocstrings-python>=2.0.10",
 ]
 
 [project.scripts]
@@ -29,6 +27,7 @@ packages = ["src/empty_project"]
 
 [dependency-groups]
 dev = ["pytest>=8,<9", "ruff>=0.9,<1"]
+docs = ["relcon-docs @ git+https://github.com/relaxed-constraints/relcon-docs.git@1914d3c4486c6baa3a1b9beb5936f9797dd0fa5b"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

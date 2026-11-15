@@ -2,12 +2,26 @@
 
 The site uses Zensical's modern theme with light and dark palettes, code-copy
 buttons, tabs, callouts, Mermaid diagrams and a Python API reference.
-The configuration and styles are included in this repository. No sibling checkout
-or separate theme package is needed.
+Shared defaults and copy-button styling come from
+[relcon-docs](https://github.com/relaxed-constraints/relcon-docs), installed through
+the `docs` dependency group at a pinned Git commit. No sibling checkout is needed.
+Project-specific configuration lives in `mkdocs.yml`, including navigation,
+Mermaid support, diagram styling and API headings.
+
+The site exports `llms.txt` and a Markdown version of each page, available through
+the copy-as-Markdown button.
 
 ## Preview and build
 
-Activate the project environment, then run:
+Install the docs group, then activate the project environment:
+
+```sh
+uv sync --locked --group docs
+source .venv/bin/activate
+```
+
+With pip, use `python -m pip install --group docs` in the active environment.
+Git is required to install the pinned dependency. Then run:
 
 ```sh
 zensical serve
@@ -21,9 +35,9 @@ is excluded from Git.
 
 1. Update the package name and metadata in `pyproject.toml`, then regenerate `uv.lock`.
 2. Update `site_name`, `site_description`, `site_url`, `repo_url`, `repo_name` and
-   `copyright` in `zensical.toml`.
+   `copyright` in `mkdocs.yml`.
 3. Update the clone command and project links in the README and installation page.
-4. Replace the placeholder pages and update the navigation in `zensical.toml`.
+4. Replace the placeholder pages and update the navigation in `mkdocs.yml`.
 5. Point the API reference at your renamed Python modules.
 6. Follow [Publish under your own repository](#publish-under-your-own-repository)
    to enable GitHub Pages.
@@ -60,13 +74,13 @@ Check that both displayed URLs point to your repository before pushing.
 
 ### Update the site settings
 
-Edit these fields in the existing `[project]` section of `zensical.toml`:
+Edit these top-level fields in `mkdocs.yml`:
 
-```toml
-site_name = "Index Advisor"
-site_url = "https://alice.github.io/index-advisor/"
-repo_url = "https://github.com/alice/index-advisor"
-repo_name = "alice/index-advisor"
+```yaml
+site_name: Index Advisor
+site_url: https://alice.github.io/index-advisor/
+repo_url: https://github.com/alice/index-advisor
+repo_name: alice/index-advisor
 ```
 
 Keep the repository name in `site_url` and include the trailing slash.
@@ -80,7 +94,7 @@ Changing the Git remote does not update these documentation settings.
 4. Commit your changes and push the `main` branch:
 
    ```sh
-   git add zensical.toml
+   git add mkdocs.yml
    git commit -m "Configure documentation for my project"
    git push -u origin main
    ```
@@ -99,6 +113,43 @@ The workflow deploys to the repository in which it runs. It does not publish to
 the starter project's site. No separate hosting account or PyPI release is needed.
 GitHub Free supports Pages for public repositories; private repositories need a
 plan that supports Pages. See the [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
+
+## Shared defaults and upgrades
+
+`.relcon-docs/base.yml`, `.relcon-docs/state.json` and
+`docs/stylesheets/relcon-docs.css` are managed files. Keep them committed and put
+customizations in `mkdocs.yml` or a separate stylesheet. YAML mappings merge;
+lists replace inherited lists. The local `extra_css` list therefore includes
+both the shared stylesheet and `stylesheets/diagrams.css`.
+
+To upgrade, update the relcon-docs commit in `pyproject.toml`, run `uv lock`
+and `uv sync --locked --group docs`, then review and apply:
+
+```sh
+relcon-docs configure --dry-run
+relcon-docs configure
+relcon-docs configure --check
+zensical build --strict
+```
+
+Manual edits to managed files cause conflicts. Review them before using
+`--force` to replace package-owned files. Existing `mkdocs.yml` and
+`.github/workflows/docs.yml` files are never overwritten, even with force.
+
+The project-owned `docs.yml` calls the reusable deployment workflow at a pinned
+commit, after the project's CI checks succeed. Its triggers remain pushes to
+`main` and manual runs. Update this workflow pin separately when adopting new
+deployment tooling. To publish only releases instead, replace the `push` trigger:
+
+```yaml
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+```
+
+For release deployment, allow release tags in the `github-pages` environment's
+deployment protection rules.
 
 ## Tabs and callouts
 

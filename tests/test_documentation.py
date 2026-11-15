@@ -1,0 +1,30 @@
+"""Check inherited capabilities and the template's deployment policy."""
+
+from pathlib import Path
+
+import pytest
+
+config_module = pytest.importorskip("zensical.config")
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_shared_defaults_keep_project_specific_features():
+    cli = pytest.importorskip("relcon_docs.cli")
+    assert cli.main(["configure", "--project", str(ROOT), "--check"]) == 0
+    config = config_module.parse_config(str(ROOT / "mkdocs.yml"))
+    python = config["plugins"]["mkdocstrings"]["config"]["handlers"]["python"]
+    assert python["paths"] == ["src"]
+    assert python["options"]["show_root_heading"] is True
+    assert python["options"]["heading_level"] == 2
+    assert python["options"]["signature_crossrefs"] is True
+    assert "content.action.copy" in config["theme"]["features"]
+    assert "stylesheets/diagrams.css" in config["extra_css"]
+    assert config["plugins"]["llmstxt"]["config"]["enabled"] is True
+
+
+def test_deployment_keeps_main_and_manual_triggers_after_checks():
+    yaml = pytest.importorskip("yaml")
+    workflow = yaml.load((ROOT / ".github/workflows/docs.yml").read_text(), Loader=yaml.BaseLoader)
+    assert workflow["on"] == {"workflow_dispatch": "", "push": {"branches": ["main"]}}
+    assert workflow["jobs"]["docs"]["needs"] == "checks"
+    assert not (ROOT / ".github/workflows/pages.yml").exists()
