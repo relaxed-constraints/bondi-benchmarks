@@ -167,3 +167,9 @@ Callouts (`!!! note`), collapsible notes (`??? tip`) and Mermaid fenced blocks
 are enabled by relcon-docs. No project-level Markdown extension settings are
 needed for them. Light/dark diagram colours also come from the shared stylesheet.
 See the [diagram examples](https://relaxed-constraints.github.io/relcon-docs/diagrams/).
+
+Inline (`$...$`) and display (`$$...$$`) equations are supported by the shared
+math configuration and managed `docs/javascripts/relcon-docs-math.js` loader.
+The loader fetches MathJax from jsDelivr only on pages containing equations.
+The shared stylesheet also supplies dark-mode copy controls and diagram accent
+colours; see the [shared feature examples](https://relaxed-constraints.github.io/relcon-docs/).
