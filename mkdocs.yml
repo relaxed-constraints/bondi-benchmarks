@@ -17,9 +17,6 @@ nav:
 - Development:
   - Contributing: development.md
   - Documentation: documentation.md
-extra_css:
-- stylesheets/relcon-docs.css
-- stylesheets/diagrams.css
 plugins:
   mkdocstrings:
     handlers:

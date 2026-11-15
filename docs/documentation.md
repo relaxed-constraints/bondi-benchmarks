@@ -6,7 +6,7 @@ Shared defaults and copy-button styling come from
 [relcon-docs](https://github.com/relaxed-constraints/relcon-docs), installed through
 the `docs` dependency group at a pinned Git commit. No sibling checkout is needed.
 Project-specific configuration lives in `mkdocs.yml`, including navigation,
-Mermaid support, diagram styling and API headings.
+Mermaid support and API headings.
 
 Shared relcon-docs defaults automatically export `llms.txt` and a Markdown version of each page, available through
 the copy-as-Markdown button.
@@ -119,8 +119,8 @@ plan that supports Pages. See the [GitHub Pages documentation](https://docs.gith
 `.relcon-docs/base.yml`, `.relcon-docs/state.json` and
 `docs/stylesheets/relcon-docs.css` are managed files. Keep them committed and put
 customizations in `mkdocs.yml` or a separate stylesheet. YAML mappings merge;
-lists replace inherited lists. The local `extra_css` list therefore includes
-both the shared stylesheet and `stylesheets/diagrams.css`.
+lists replace inherited lists. The shared stylesheet includes diagram colours;
+no local `extra_css` override is required.
 
 To upgrade, update the relcon-docs commit in `pyproject.toml`, run `uv lock`
 and `uv sync --locked --group docs`, then review and apply:
@@ -156,12 +156,14 @@ deployment protection rules.
 Use `=== "uv"` and `=== "pip"` with indented content for tabs, as on the
 installation page. Use `!!! note "Title"` with indented content for a callout.
 
-The copied `stylesheets/diagrams.css` defines light and dark diagram colors.
-Custom Mermaid block diagrams can use `fill:var(--jb-node-bg)`,
-`stroke:var(--jb-node-border)` and `color:var(--jb-diagram-text)` in their styles.
+Shared relcon-docs styling supplies light and dark diagram colours.
+Custom Mermaid block diagrams can use `fill:var(--relcon-diagram-node-bg)`,
+`stroke:var(--relcon-diagram-node-border)` and `color:var(--relcon-diagram-text)`.
+Standard flowcharts inherit colours without inline styling.
 
 ## Shared authoring features
 
 Callouts (`!!! note`), collapsible notes (`??? tip`) and Mermaid fenced blocks
 are enabled by relcon-docs. No project-level Markdown extension settings are
-needed for them. Project-specific diagram styles remain local.
+needed for them. Light/dark diagram colours also come from the shared stylesheet.
+See the [diagram examples](https://relaxed-constraints.github.io/relcon-docs/diagrams/).

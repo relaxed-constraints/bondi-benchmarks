@@ -22,7 +22,8 @@ def test_shared_defaults_keep_project_specific_features():
     assert python["options"]["heading_level"] == 2
     assert python["options"]["signature_crossrefs"] is True
     assert "content.action.copy" in config["theme"]["features"]
-    assert "stylesheets/diagrams.css" in config["extra_css"]
+    assert config["extra_css"] == ["stylesheets/relcon-docs.css"]
+    assert not (ROOT / "docs/stylesheets/diagrams.css").exists()
     assert config["plugins"]["llmstxt"]["config"]["enabled"] is True
 
 
