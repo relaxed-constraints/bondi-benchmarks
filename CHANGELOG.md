@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Inherit Markdown exports and llms.txt directly from relcon-docs, removing
+  duplicate project-level export configuration.
+
 - Adopt relcon-docs through a dedicated docs dependency group and inherited YAML
   configuration, retaining Mermaid styling and project-specific API headings.
 - Enable Markdown exports and llms.txt, and reuse the shared Pages workflow

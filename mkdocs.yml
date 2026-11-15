@@ -37,7 +37,3 @@ plugins:
         options:
           show_root_heading: true
           heading_level: 2
-  llmstxt:
-    sections:
-      Documentation:
-      - '*.md'

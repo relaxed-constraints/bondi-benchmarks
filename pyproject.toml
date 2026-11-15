@@ -27,7 +27,7 @@ packages = ["src/empty_project"]
 
 [dependency-groups]
 dev = ["pytest>=8,<9", "ruff>=0.9,<1"]
-docs = ["relcon-docs @ git+https://github.com/relaxed-constraints/relcon-docs.git@1914d3c4486c6baa3a1b9beb5936f9797dd0fa5b"]
+docs = ["relcon-docs @ git+https://github.com/relaxed-constraints/relcon-docs.git@792427b1760097d2fed03224d24bdab69be3dcb7"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

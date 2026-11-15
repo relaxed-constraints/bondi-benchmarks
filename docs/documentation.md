@@ -8,7 +8,7 @@ the `docs` dependency group at a pinned Git commit. No sibling checkout is neede
 Project-specific configuration lives in `mkdocs.yml`, including navigation,
 Mermaid support, diagram styling and API headings.
 
-The site exports `llms.txt` and a Markdown version of each page, available through
+Shared relcon-docs defaults automatically export `llms.txt` and a Markdown version of each page, available through
 the copy-as-Markdown button.
 
 ## Preview and build
