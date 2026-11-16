@@ -6,13 +6,13 @@ description = "A starting point for reproducible document database experiments w
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "yanex==0.7.0",
+    "yanex>=0.7.0",
     "pymongo>=4.13,<5",
     "huggingface-hub>=0.30,<2",
     "pandas>=3.1.0",
     "matplotlib>=3.11.2",
     "ipykernel>=7.4.0",
-    "bondi==0.3.4",
+    "bondi>=0.3.7",
 ]
 
 [project.scripts]
@@ -27,7 +27,7 @@ packages = ["src/empty_project"]
 
 [dependency-groups]
 dev = ["pytest>=8,<9", "ruff>=0.9,<1"]
-docs = ["relcon-docs==0.1.0"]
+docs = ["relcon-docs>=0.1.0"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
