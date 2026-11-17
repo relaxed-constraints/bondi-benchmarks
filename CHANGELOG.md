@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Inherit shared image lightboxes and allow relcon-docs updates within
+  `>=0.1.0,<1.0.0`, retaining the lockfile for reproducible documentation builds.
+
 - Install relcon-docs 0.1.0 from PyPI and enable shared heading permalinks.
 
 - Update relcon-docs to inherit alphabetical API members and exclude private members.
