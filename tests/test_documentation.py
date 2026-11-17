@@ -1,5 +1,6 @@
 """Check inherited capabilities and the template's deployment policy."""
 
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -22,7 +23,10 @@ def test_shared_defaults_keep_project_specific_features():
     assert python["options"]["heading_level"] == 2
     assert python["options"]["signature_crossrefs"] is True
     assert "content.action.copy" in config["theme"]["features"]
-    assert config["extra_css"] == ["stylesheets/relcon-docs.css"]
+    assert config["extra_css"] == [
+        "stylesheets/relcon-docs.css",
+        "stylesheets/relcon-docs-presentation.css",
+    ]
     assert not (ROOT / "docs/stylesheets/diagrams.css").exists()
     assert config["plugins"]["llmstxt"]["config"]["enabled"] is True
 
@@ -33,3 +37,23 @@ def test_deployment_keeps_main_and_manual_triggers_after_checks():
     assert workflow["on"] == {"workflow_dispatch": "", "push": {"branches": ["main"]}}
     assert workflow["jobs"]["docs"]["needs"] == "checks"
     assert not (ROOT / ".github/workflows/pages.yml").exists()
+
+
+def test_progress_is_last_and_template_renders():
+    yaml = pytest.importorskip("yaml")
+    config = yaml.safe_load((ROOT / "mkdocs.yml").read_text())
+    tabs = [next(iter(item)) for item in config["nav"]]
+    assert tabs[-2:] == ["Development", "Progress"]
+    assert "Results" not in tabs
+    assert (ROOT / "docs/progress/week-1/presentation.md").read_text() == ""
+    result = subprocess.run(
+        ["zensical", "build", "--strict"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    html = (ROOT / "site/progress/template/presentation/index.html").read_text()
+    assert 'class="presentation-content"' in html
+    assert "histogram_example.png" in html
+    assert 'class="presentation-toggle"' in html

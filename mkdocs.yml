@@ -13,10 +13,13 @@ nav:
   - Quickstart: quickstart.md
 - User guide: user-guide.md
 - Reference: reference.md
-- Results: results.md
 - Development:
   - Contributing: development.md
   - Documentation: documentation.md
+- Progress:
+  - Overview: progress/index.md
+  - Presentation template: progress/template/presentation.md
+  - Week 1: progress/week-1/presentation.md
 plugins:
   mkdocstrings:
     handlers:

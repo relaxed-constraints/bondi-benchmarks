@@ -9,6 +9,6 @@ Start with [Installation](installation.md), then follow the [Quickstart](quickst
     Replace this introduction with your research question and project goals.
     See [Adapt the documentation](documentation.md#adapt-the-template) for the rename checklist.
 
-The [user guide](user-guide.md) and [results](results.md) pages contain prompts
+The [user guide](user-guide.md) and [progress](progress/index.md) pages contain prompts
 for your project documentation. The [API reference](reference.md) reads docstrings
 from the Python source.

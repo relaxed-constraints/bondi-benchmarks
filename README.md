@@ -19,7 +19,6 @@ It builds on the following dependencies and tools:
 - [Jupyter Notebooks](https://jupyter.org/) an interactive environment for running and visualizing experiments
 - [pandas](https://pandas.pydata.org/) a tabular data analysis library for Python
 - [Matplotlib](https://matplotlib.org/) a plotting library for Python
-- [MARP](https://marp.app) (optional) a tool for rendering Markdown into slides
 
 <details>
   <summary><b>What is all this stuff?</b></summary>
@@ -81,13 +80,6 @@ sets and calculate statistics such as median execution times and speedups.
 Matplotlib creates plots from Python data. We use it with pandas to turn benchmark
 results into charts for analysis and progress updates.
 
-#### Marp (optional)
-
-Marp renders Markdown files as slide decks. We use it to write simple progress
-updates with text, tables, equations and images. The Marp for VS Code extension
-provides a slide preview and export commands. Start with the example deck in
-[results/week-1/presentation.md](results/week-1/presentation.md).
-
 </details>
 
 
@@ -100,7 +92,7 @@ provides a slide preview and export commands. Start with the example deck in
 | `experiments/` | Yanex scripts; `greet.py` calls the greeting helper and logs a metric. |
 | `experiments/configs/` | YAML parameters; `config.yaml` contains `name`. |
 | `notebooks/` | Examples calling the helper and plotting a small table with pandas and Matplotlib. |
-| `results/` | Use this directory to store experiment results and create progress update slides. |
+| `docs/progress/` | Progress updates and a reusable presentation template. |
 | `src/empty_project/` | Reusable Python code goes here, replacing the `hello.py` stub. |
 | `tests/` | A unit test checking the greeting printed by `hello_world()`. |
 
@@ -186,9 +178,10 @@ The CLI prints `Hello, World` by default, or greets the supplied name. Extend
 
 ## Progress updates
 
-Start with [the example slide deck](results/week-1/presentation.md). Install
-[Marp for VS Code](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode)
-to preview and export it. Replace the demo title and examples with your own work.
+Start with the [presentation template](docs/progress/template/presentation.md).
+Write your first update in `docs/progress/week-1/presentation.md` and preview with
+`uv run --group docs zensical serve`. Open Progress and select **Presentation mode**
+on a desktop-width window. Press **Esc** to exit. No separate slide tool is needed.
 
 ## Make it yours
 
@@ -208,8 +201,8 @@ to preview and export it. Replace the demo title and examples with your own work
    parameter in `experiments/configs/config.yaml`, and log metrics relevant to
    your research instead of `name_length`. Keep reusable logic in `src/`.
 5. **Adapt the supporting files.** Rename and update `notebooks/hello.ipynb` and
-   `tests/test_hello.py` to use your new functions. Replace the demo slide content
-   and histogram in `results/` with your own progress updates, and add project
+   `tests/test_hello.py` to use your new functions. Replace the example content
+   and histogram in `docs/progress/template/` with your own progress updates, and add project
    notes under `docs/`. Update the README commands to match your renamed files.
 6. **Refresh and check.** From the project root, run `uv sync` to update the
    lockfile and reinstall the renamed package and CLI. Then run `uv run pytest`,

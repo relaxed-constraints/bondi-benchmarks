@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Upgrade relcon-docs to 0.1.2 and replace Results and standalone slide tooling
+  with a final Progress tab, a presentation-mode template and an empty Week 1 page.
+
 - Inherit shared image lightboxes and allow relcon-docs updates within
   `>=0.1.0,<1.0.0`, retaining the lockfile for reproducible documentation builds.
 
