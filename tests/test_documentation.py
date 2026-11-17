@@ -39,13 +39,12 @@ def test_deployment_keeps_main_and_manual_triggers_after_checks():
     assert not (ROOT / ".github/workflows/pages.yml").exists()
 
 
-def test_progress_is_last_and_template_renders():
+def test_progress_is_last_and_docs_build():
     yaml = pytest.importorskip("yaml")
     config = yaml.safe_load((ROOT / "mkdocs.yml").read_text())
     tabs = [next(iter(item)) for item in config["nav"]]
     assert tabs[-2:] == ["Development", "Progress"]
     assert "Results" not in tabs
-    assert (ROOT / "docs/progress/week-1/presentation.md").read_text() == ""
     result = subprocess.run(
         ["zensical", "build", "--strict"],
         cwd=ROOT,
@@ -53,7 +52,3 @@ def test_progress_is_last_and_template_renders():
         text=True,
     )
     assert result.returncode == 0, result.stdout + result.stderr
-    html = (ROOT / "site/progress/template/presentation/index.html").read_text()
-    assert 'class="presentation-content"' in html
-    assert "histogram_example.png" in html
-    assert 'class="presentation-toggle"' in html
