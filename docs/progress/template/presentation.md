@@ -119,7 +119,7 @@ Use pipes for columns; `---:` right-aligns a numeric column.
 
 ## Your progress update
 
-Replace the examples with a short account of your own work:
+Replace the examples with a short account of your own work, for example:
 
 1. **Question:** What were you trying to achieve?
 2. **Progress:** What did you complete since the last meeting?
