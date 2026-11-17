@@ -1,5 +1,5 @@
 /* Presentation mode removes site chrome while retaining the article and TOC. */
-body:has(.presentation-content.presentation-mode) :is(.md-header, .md-tabs, .md-sidebar--primary) {
+body:has(.presentation-content.presentation-mode) :is(.md-header, .md-tabs, .md-sidebar--primary, .md-footer) {
   display: none;
 }
 
@@ -40,12 +40,12 @@ body:has(.presentation-content.presentation-mode) .md-main .md-content > .md-con
 }
 
 .md-typeset .presentation-content.presentation-mode {
-  font-size: clamp(0.9rem, 0.75rem + 0.4vw, 1.1rem);
+  font-size: clamp(0.972rem, 0.81rem + 0.432vw, 1.188rem);
   line-height: 1.65;
 }
 
 /* Prose stays readable; tables and figures can use the full content width. */
-.presentation-content.presentation-mode > :is(p, ul, ol, blockquote) {
+.presentation-content.presentation-mode .presentation-slide > :is(p, ul, ol, blockquote) {
   max-width: 72ch;
 }
 
@@ -55,6 +55,17 @@ body:has(.presentation-content.presentation-mode) .md-main .md-content > .md-con
 
 .md-typeset .presentation-content.presentation-mode :is(h1, h2, h3) {
   line-height: 1.25;
+}
+
+/* Style the navigation target as the title without changing heading semantics. */
+.md-typeset .presentation-content.presentation-mode .presentation-slide-title {
+  font-size: 1.875em;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--md-default-fg-color);
+  margin: 0 0 1.25em;
+  padding: 0;
 }
 
 .presentation-controls {
@@ -128,10 +139,6 @@ body:has(.presentation-content.presentation-mode) .md-main .md-content > .md-con
   border: 0;
   border-top: 1px solid var(--md-default-fg-color--lightest);
   clear: both;
-}
-
-.presentation-content.presentation-mode {
-  padding-bottom: 5rem;
 }
 
 .presentation-nav[hidden] {
@@ -298,4 +305,45 @@ body:has(.presentation-content.presentation-mode) .md-main .md-content > .md-con
   .presentation-nav {
     display: none;
   }
+}
+
+/* Normal docs retain their original flow; presentation shows one section. */
+.presentation-slide { display: contents; }
+.presentation-slide[hidden] { display: none; }
+.presentation-content.presentation-mode .presentation-slide {
+  display: block;
+}
+.presentation-content.presentation-mode .presentation-slide[hidden],
+.presentation-content.presentation-mode > hr {
+  display: none;
+}
+.presentation-content.presentation-mode .presentation-slide > :first-child {
+  margin-top: 0;
+}
+body:has(.presentation-content.presentation-mode) .md-nav--secondary .md-nav__link {
+  color: var(--md-default-fg-color);
+}
+body:has(.presentation-content.presentation-mode) .md-nav--secondary .presentation-toc-active {
+  color: var(--md-accent-fg-color);
+  font-weight: 600;
+}
+@media print {
+  .presentation-content.presentation-mode .presentation-slide,
+  .presentation-content.presentation-mode .presentation-slide[hidden] {
+    display: contents;
+  }
+  .presentation-content.presentation-mode > hr { display: block; }
+}
+
+/* A modest presentation-only increase for the fixed-size interface text too. */
+.presentation-content.presentation-mode .presentation-toggle,
+.presentation-content.presentation-mode .presentation-position,
+.presentation-content.presentation-mode .presentation-nav [data-section-count],
+body:has(.presentation-content.presentation-mode) .md-nav--secondary {
+  font-size: 0.756rem;
+}
+
+/* Keep heading anchors usable by the TOC without displaying permalink symbols. */
+.presentation-content.presentation-mode .headerlink {
+  display: none;
 }
