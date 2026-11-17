@@ -3419,7 +3419,7 @@ wheels = [
 
 [[package]]
 name = "relcon-docs"
-version = "0.1.5"
+version = "0.1.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "mkdocstrings-python" },
@@ -3427,9 +3427,9 @@ dependencies = [
     { name = "ruff" },
     { name = "zensical" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/58/e4/861ff029460d3328ba6c8d4f3775b5022fc554605a96ae0b372d20d45954/relcon_docs-0.1.5.tar.gz", hash = "sha256:2d2626a31ef5a0d9ab821ba90aa1303bf4805a19f1f12f0402764931a3bc0349", size = 310216 }
+sdist = { url = "https://files.pythonhosted.org/packages/8c/66/91c7bd19c588dcd86174b3fbab41d5fa44ef342d59077111a017a8f7bc0f/relcon_docs-0.1.6.tar.gz", hash = "sha256:df6b1a25e0c1e78c27a027c8ab1a911e3518c62554d8c21030d06349d7c8677c", size = 310633 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0a/31/23e41f361fe8d318d239c8f3ed1d1627d798c3a3560b702e471ec865f69a/relcon_docs-0.1.5-py3-none-any.whl", hash = "sha256:5adbf27dc74cb5302fe2dd526806db070fa84b05520e7f6985af422214cae1af", size = 19778 },
+    { url = "https://files.pythonhosted.org/packages/06/33/cd0cc134ba49284cea1a9dc31fc31d6ff49826d636dfa078760ac4ebc389/relcon_docs-0.1.6-py3-none-any.whl", hash = "sha256:8906031dad1f956ba96c23a744e1d95afbc091be1736316772da274dcb5e3386", size = 19786 },
 ]
 
 [[package]]
