@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Document the hello module's arguments and return values with Google-style
+  docstrings and explain API reference sections.
+
 - Upgrade relcon-docs to 0.1.2 and replace Results and standalone slide tooling
   with a final Progress tab, a presentation-mode template and an empty Week 1 page.
 
