@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Upgrade relcon-docs to 0.1.7 and apply shared Markdown defaults, including SmartSymbols arrows.
+
 - Document the hello module's arguments and return values with Google-style
   docstrings and explain API reference sections.
 
