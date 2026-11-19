@@ -11,6 +11,7 @@ nav:
 - Getting started:
   - Installation: installation.md
   - Renaming the project: renaming.md
+  - Git and GitHub workflow: git-workflow.md
   - Adding functionality: adding-functionality.md
   - Documentation changes: documentation.md
   - Progress updates: progress-updates.md

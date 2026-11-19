@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add a Getting started guide for feature branches, checks, pull requests, and reviews.
+
 - Add uv and pip tabs for reinstalling the renamed project.
 
 - Explain how to preview documentation, view saved changes, and stop the local server.
