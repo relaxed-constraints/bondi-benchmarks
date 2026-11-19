@@ -10,6 +10,7 @@ nav:
 - Home: index.md
 - Getting started:
   - Installation: installation.md
+  - Dependencies: dependencies.md
   - Renaming the project: renaming.md
   - Git and GitHub workflow: git-workflow.md
   - Adding functionality: adding-functionality.md

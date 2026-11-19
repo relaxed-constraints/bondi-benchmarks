@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Move tool explanations into a Dependencies page and include Zensical.
+
 - Add a Getting started guide for feature branches, checks, pull requests, and reviews.
 
 - Add uv and pip tabs for reinstalling the renamed project.
