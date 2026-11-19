@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add pytest and Ruff descriptions and documentation links to Dependencies.
+
 - Move tool explanations into a Dependencies page and include Zensical.
 
 - Add a Getting started guide for feature branches, checks, pull requests, and reviews.

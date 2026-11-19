@@ -70,3 +70,17 @@ Zensical builds documentation websites from Markdown files.
 This project uses it to preview and publish its documentation.
 
 Read more in the [Zensical documentation](https://zensical.org/docs/).
+
+## pytest
+
+pytest is a framework for writing and running Python tests.
+This project uses it to check the greeting function and its consumers.
+
+Read more in the [pytest documentation](https://docs.pytest.org/en/stable/).
+
+## Ruff
+
+Ruff checks and formats Python code.
+This project uses it to find code errors, check imports, and keep formatting consistent.
+
+Read more in the [Ruff documentation](https://docs.astral.sh/ruff/).
