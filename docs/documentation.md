@@ -35,14 +35,8 @@ The API reference displays these descriptions.
 
 ## Preview and build
 
-The [installation steps](installation.md#install-dependencies) include the documentation tools.
-Preview the site from the active environment:
+Follow [Start the local documentation server](installation.md#start-the-local-documentation-server) to preview your changes.
 
-```sh
-zensical serve
-```
-
-Open the local URL printed by the command.
 Check the site before you commit:
 
 ```sh

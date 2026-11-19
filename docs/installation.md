@@ -52,4 +52,18 @@ pytest
 The command prints `Hello, World`.
 The tests do not need a database.
 
+## Start the local documentation server
+
+Run this command from the repository root with the project environment active:
+
+```sh
+zensical serve
+```
+
+Open the local URL printed in the terminal, usually <http://127.0.0.1:8000/>.
+Keep the command running while you edit pages under `docs/`.
+The server rebuilds the site and refreshes your browser when you save changes.
+
+Press **Ctrl+C** in the terminal to stop the server.
+
 Continue with [Renaming the project](renaming.md).

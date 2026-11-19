@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Explain how to preview documentation, view saved changes, and stop the local server.
+
 - Organize Getting started into installation, renaming, functionality, documentation,
   and progress pages. Keep the User guide as a placeholder and the API reference as module output.
 
