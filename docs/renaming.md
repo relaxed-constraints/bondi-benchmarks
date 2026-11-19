@@ -41,10 +41,6 @@ Use underscores in the Python package name.
    - `tests/test_hello.py`
    - `docs/api-reference.md`
 
-4. Select your project environment as the notebook kernel.
-   Replace `bondi-empty-project` in the notebook's `metadata.kernelspec.display_name`.
-   Clear saved outputs that contain starter examples.
-
 ## Update project information
 
 | File | Changes |
