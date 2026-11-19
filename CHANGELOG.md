@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Organize Getting started into installation, renaming, functionality, documentation,
+  and progress pages. Keep the User guide as a placeholder and the API reference as module output.
+
 - Upgrade relcon-docs to 0.1.7 and apply shared Markdown defaults, including SmartSymbols arrows.
 
 - Document the hello module's arguments and return values with Google-style

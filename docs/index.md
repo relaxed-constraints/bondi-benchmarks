@@ -1,14 +1,7 @@
 # BONDI Empty Project
 
-A starting point for reproducible database research with BONDI and Yanex.
-This documentation scaffold uses the same Zensical theme as BONDI and BONDI JSON Bench.
+A starting point for database research with [BONDI](https://relaxed-constraints.github.io/bondi/)
+and [Yanex](https://relaxed-constraints.github.io/yanex/).
 
-Start with [Installation](installation.md), then follow the [Quickstart](quickstart.md).
-
-!!! tip "Make this project your own"
-    Replace this introduction with your research question and project goals.
-    See [Adapt the documentation](documentation.md#adapt-the-template) for the rename checklist.
-
-The [user guide](user-guide.md) and [progress](progress/index.md) pages contain prompts
-for your project documentation. The [API reference](reference.md) reads docstrings
-from the Python source.
+Start with [Installation](installation.md).
+Follow the Getting started pages to make this project your own.

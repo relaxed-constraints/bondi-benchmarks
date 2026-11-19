@@ -10,12 +10,12 @@ nav:
 - Home: index.md
 - Getting started:
   - Installation: installation.md
-  - Quickstart: quickstart.md
+  - Renaming the project: renaming.md
+  - Adding functionality: adding-functionality.md
+  - Documentation changes: documentation.md
+  - Progress updates: progress-updates.md
 - User guide: user-guide.md
-- Reference: reference.md
-- Development:
-  - Contributing: development.md
-  - Documentation: documentation.md
+- API Reference: api-reference.md
 - Progress:
   - Overview: progress/index.md
   - Presentation template: progress/template/presentation.md

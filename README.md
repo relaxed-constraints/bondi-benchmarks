@@ -1,12 +1,5 @@
 # BONDI empty project
 
-## Documentation
-
-The repository includes a ready-to-use Zensical site. See
-[Installation](docs/installation.md) and [Documentation setup](docs/documentation.md).
-Install documentation tools with `uv sync --locked --group docs`, then run
-`zensical serve` from the activated project environment to preview it.
-
 A minimal starting point for students building their own BONDI research project.
 It uses the same dependencies as [bondi-demo-project](https://github.com/relaxed-constraints/bondi-demo-project), 
 but starts with a barebones setup with one reusable function and examples of calling it from an experiment, a notebook and a test.
@@ -97,118 +90,14 @@ results into charts for analysis and progress updates.
 | `tests/` | A unit test checking the greeting printed by `hello_world()`. |
 
 
-## Setup
+## Getting started
 
-### 1. Clone this repository
+Start with [Installation](docs/installation.md).
+Follow the [rename checklist](docs/renaming.md) to make the project your own.
 
-Run the following command to clone the project repository to your local machine:
-
-```sh
-git clone https://github.com/relaxed-constraints/bondi-empty-project.git
-cd bondi-empty-project
-```
-
-### 2. Remove the template remote
-
-Remove the remote to prevent accidental pushes to the template repository:
-
-```sh
-git remote remove origin
-```
-
-Your local files and commit history are unchanged. When you create a GitHub
-repository for your project, add its URL as the new `origin` remote.
-
-### 3. Install dependencies and run tests
-
-Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then run
-these commands from this directory:
-
-```sh
-uv sync --locked     # installs dependencies
-uv run pytest        # runs the unit tests
-uv run ruff check    # runs the linter to check code style
-uv run ruff format   # formats the code according to the linter rules
-```
-
-
-## Run the experiment
-
-Activate the virtual environment and change into the experiment directory.
-
-```sh
-source .venv/bin/activate
-cd experiments
-```
-
-Then run the experiment with
-```sh
-yanex run greet.py -c configs/config.yaml
-```
-
-You can also override the default name with the `-p` (short for `--param`) flag, for example:
-
-```sh
-yanex run greet.py -c configs/config.yaml -p name=Student
-```
-
-The experiment prints a greeting and records the `name_length` metric. Yanex
-prints the experiment ID; inspect it with `yanex show <experiment-id>`.
-Without a config file, the name defaults to `World`.
-
-## Use the notebook
-
-Open `notebooks/hello.ipynb` in VS Code with its Jupyter extension and select
-this project's `.venv/bin/python` as the kernel. Run the greeting cell, then the small pandas/Matplotlib plotting example.
-
-## Run the CLI
-
-This project includes a stub command-line interface that you can extend for your own purposes.
-Rename it in `pyproject.toml` under the `[project.scripts]` section to match your desired CLI command.
-
-```sh
-uv run empty-cli
-uv run empty-cli --name Student
-uv run empty-cli --help
-```
-
-The CLI prints `Hello, World` by default, or greets the supplied name. Extend
-`src/empty_project/_cli.py` to add arguments using Python's `argparse` module.
-
-
-## Progress updates
-
-Start with the [presentation template](docs/progress/template/presentation.md).
-Write your first update in `docs/progress/week-1/presentation.md` and preview with
-`uv run --group docs zensical serve`. Open Progress and select **Presentation mode**
-on a desktop-width window. Press **Esc** to exit. No separate slide tool is needed.
-
-## Make it yours
-
-1. **Name your project.** Update the README title and introduction, and the `name`,
-   `description` and `authors` fields in `pyproject.toml`. For example, use
-   `my-research-project` as the project name. You can keep the `bondi-` prefix, but 
-   you don't have to. 
-2. **Rename the Python package.** Rename `src/empty_project/` to something like
-   `src/my_research_project/` (use underscores, not hyphens). Update the package
-   path under `[tool.hatch.build.targets.wheel]` and all `empty_project` imports
-   in scripts, notebooks and tests.
-3. **Replace the greeting example.** Replace `hello.py` and `hello_world()` with
-   your own reusable functions. Adapt `_cli.py` to call them, and change
-   `[project.scripts]` to match, for example
-   `my-cli = "my_research_project._cli:main"`.
-4. **Add your experiments.** Rename `experiments/greet.py`, replace the `name`
-   parameter in `experiments/configs/config.yaml`, and log metrics relevant to
-   your research instead of `name_length`. Keep reusable logic in `src/`.
-5. **Adapt the supporting files.** Rename and update `notebooks/hello.ipynb` and
-   `tests/test_hello.py` to use your new functions. Replace the example content
-   and histogram in `docs/progress/template/` with your own progress updates, and add project
-   notes under `docs/`. Update the README commands to match your renamed files.
-6. **Refresh and check.** From the project root, run `uv sync` to update the
-   lockfile and reinstall the renamed package and CLI. Then run `uv run pytest`,
-   `uv run ruff check .` and `uv run ruff format --check .`, and try your new CLI
-   and experiment commands.
-
+- [Adding functionality](docs/adding-functionality.md)
+- [Documentation changes](docs/documentation.md)
+- [Progress updates](docs/progress-updates.md)
 
 ## License
 

@@ -1,4 +1,4 @@
 # Project documentation
 
-Start with the [documentation home](index.md). See [Documentation](documentation.md)
-for preview, build and template setup instructions.
+Start with the [documentation home](index.md).
+See [Documentation changes](documentation.md) for writing, preview, and publishing steps.
