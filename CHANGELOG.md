@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add uv and pip tabs for reinstalling the renamed project.
+
 - Explain how to preview documentation, view saved changes, and stop the local server.
 
 - Organize Getting started into installation, renaming, functionality, documentation,

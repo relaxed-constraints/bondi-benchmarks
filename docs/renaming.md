@@ -73,10 +73,25 @@ Check that both URLs point to your repository.
 
 ## Reinstall and check
 
-Refresh `uv.lock` and install the renamed package:
+Install the renamed package in your project environment:
+
+=== "uv"
+
+    Refresh `uv.lock` and reinstall:
+
+    ```sh
+    uv sync --group docs
+    ```
+
+=== "pip"
+
+    ```sh
+    python -m pip install -e . --group dev --group docs
+    ```
+
+Check the renamed command and project:
 
 ```sh
-uv sync --group docs
 my-cli --name World
 pytest
 ruff check .
