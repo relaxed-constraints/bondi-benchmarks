@@ -11,8 +11,7 @@ def main() -> None:
     parser.add_argument("--name", default="World", help="Name to greet (default: World)")
     args = parser.parse_args()
 
-    # invoke the greeting helper with the provided name
-    hello_world(args.name)
+    print(hello_world(args.name))
 
 
 if __name__ == "__main__":
