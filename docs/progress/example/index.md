@@ -1,9 +1,7 @@
-# Progress update template
+# Presentation example
 
 This example shows how to write progress updates as documentation pages.
-Select **Presentation mode** on a desktop-width window. Use the arrow controls or
-Left/Right keys to move between sections; press **Esc** to restore normal mode.
-Use your browser's fullscreen menu to hide browser controls.
+See [Progress updates](../../progress-updates.md) for presentation controls.
 
 ---
 
@@ -12,7 +10,7 @@ Use your browser's fullscreen menu to hide browser controls.
 
 Use ordinary Markdown for emphasis, lists, links and quotations.
 
-- **Bold** uses `**Bold**`; *italic* uses `*italic*`.
+- **Bold** uses `**Bold**`. *Italic* uses `*italic*`.
 - Inline code such as `index_set` uses backticks.
 - [BONDI documentation](https://relaxed-constraints.github.io/bondi/) uses `[text](URL)`.
 
@@ -74,7 +72,7 @@ For query times $t_1, \ldots, t_n$, the mean is $\bar{t}$.
 
 For query times $t_1, \ldots, t_n$, the mean is $\bar{t}$.
 
-Math rendering is provided by the shared documentation configuration.
+The shared documentation configuration renders equations.
 
 ---
 
@@ -99,7 +97,7 @@ the candidate is **3 times as fast**. These are illustrative values.
 
 ## Tables
 
-Use pipes for columns; `---:` right-aligns a numeric column.
+Use pipes for columns. `---:` right-aligns a numeric column.
 
 ```markdown
 | Index set | Time (ms) | Speedup |
@@ -121,21 +119,8 @@ Use pipes for columns; `---:` right-aligns a numeric column.
 
 Replace the examples with a short account of your own work, for example:
 
-1. **Question:** What were you trying to achieve?
+1. **Goal:** What were you trying to achieve?
 2. **Progress:** What did you complete since the last meeting?
 3. **Results:** Show charts or tables to explain your findings.
 4. **Blockers:** What is unclear, and what feedback do you need?
 5. **Next steps:** What will you do before the next meeting?
-
-Keep each section focused. Copy this file and its images to a new weekly folder,
-then add the page to `nav` in `mkdocs.yml`.
-
-<!-- Presenter note: Ask which next experiment would be most informative. -->
-
----
-
-## More examples
-
-See the [documentation guide](../../documentation.md) for authoring examples and the
-[shared presentation guide](https://relaxed-constraints.github.io/relcon-docs/presentation/)
-for presentation controls and configuration.

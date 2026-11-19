@@ -276,15 +276,13 @@ wheels = [
 
 [[package]]
 name = "bondi-empty-project"
-version = "0.1.0"
+version = "0.2.0"
 source = { editable = "." }
 dependencies = [
     { name = "bondi" },
-    { name = "huggingface-hub" },
     { name = "ipykernel" },
     { name = "matplotlib" },
     { name = "pandas" },
-    { name = "pymongo" },
     { name = "yanex" },
 ]
 
@@ -300,11 +298,9 @@ docs = [
 [package.metadata]
 requires-dist = [
     { name = "bondi", specifier = ">=0.3.7" },
-    { name = "huggingface-hub", specifier = ">=0.30,<2" },
     { name = "ipykernel", specifier = ">=7.4.0" },
     { name = "matplotlib", specifier = ">=3.11.2" },
     { name = "pandas", specifier = ">=3.1.0" },
-    { name = "pymongo", specifier = ">=4.13,<5" },
     { name = "yanex", specifier = ">=0.7.0" },
 ]
 

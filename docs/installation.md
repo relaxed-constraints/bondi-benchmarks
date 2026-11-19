@@ -1,32 +1,31 @@
 # Installation
 
-Use Python 3.11 or newer and Git. Install Docker with Compose v2 if you plan to
-run database experiments. The offline tests and documentation preview do not need Docker.
+Install Python 3.11 or newer and Git.
+Install Docker with Compose v2 to run local databases.
 
-## Clone the project
+## Copy the starter
+
+Clone the repository into your project directory:
 
 ```sh
-git clone https://github.com/relaxed-constraints/bondi-empty-project.git
-cd bondi-empty-project
+git clone https://github.com/relaxed-constraints/bondi-empty-project.git my-project
+cd my-project
 ```
 
-If you are creating a new project, disconnect the template remote before editing:
+Remove the starter remote:
 
 ```sh
 git remote remove origin
 ```
 
-Add your own repository as `origin` when it is ready. Do not push project changes
-back to the starter repository.
-
-## Create an environment and install
+## Install dependencies
 
 === "uv"
 
-    Install [uv](https://docs.astral.sh/uv/getting-started/installation/) first.
+    Install [uv](https://docs.astral.sh/uv/getting-started/installation/).
 
     ```sh
-    uv sync --locked
+    uv sync --locked --group docs
     source .venv/bin/activate
     ```
 
@@ -36,13 +35,34 @@ back to the starter repository.
     python -m venv .venv
     source .venv/bin/activate
     python -m pip install --upgrade pip
-    python -m pip install -e .
+    python -m pip install -e . --group dev --group docs
     ```
 
-    pip reads dependencies from `pyproject.toml`. It does not use `uv.lock`.
+On Windows PowerShell, activate the environment with `.venv\Scripts\Activate.ps1`.
+The following pages assume an active environment.
+Run commands from the repository root unless a step specifies another directory.
 
-On Windows PowerShell, use `.venv\Scripts\Activate.ps1` to activate the environment.
-The examples assume an activated environment and commands run from the repository root.
+## Check the installation
 
-Both routes install BONDI 0.3.1, Yanex 0.7.0 and the documentation tools.
-Continue with the [Quickstart](quickstart.md).
+```sh
+empty-cli --name World
+pytest
+```
+
+The command prints `Hello, World`.
+
+## Start the local documentation server
+
+Run this command from the repository root with the project environment active:
+
+```sh
+zensical serve
+```
+
+Open the local URL printed in the terminal, usually <http://127.0.0.1:8000/>.
+Keep the command running while you edit pages under `docs/`.
+The server rebuilds the site and refreshes your browser when you save changes.
+
+Press **Ctrl+C** in the terminal to stop the server.
+
+Continue with [Renaming the project](renaming.md).

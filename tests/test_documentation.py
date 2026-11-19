@@ -43,7 +43,7 @@ def test_progress_is_last_and_docs_build():
     yaml = pytest.importorskip("yaml")
     config = yaml.safe_load((ROOT / "mkdocs.yml").read_text())
     tabs = [next(iter(item)) for item in config["nav"]]
-    assert tabs[-2:] == ["Development", "Progress"]
+    assert tabs[-1] == "Progress"
     assert "Results" not in tabs
     result = subprocess.run(
         ["zensical", "build", "--strict"],

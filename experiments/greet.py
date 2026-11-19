@@ -8,8 +8,9 @@ if __name__ == "__main__":
     # read the name parameter from Yanex
     name = yanex.get_param("name", default="World")
 
-    # greet the person using the hello_world function
-    hello_world(name)
+    # Print the greeting returned by the reusable helper.
+    greeting = hello_world(name)
+    print(greeting)
 
     # log a dummy metric, here recording the length of the name
-    yanex.log_metrics({"name_length": len(name)})
+    yanex.log_metrics({"greeting_length": len(greeting)})

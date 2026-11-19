@@ -1,14 +1,12 @@
 [project]
 name = "bondi-empty-project"
 authors = [{ name = "Thomas Rueckstiess", email = "thomas@relcon.ai" }]
-version = "0.1.0"
+version = "0.2.0"
 description = "A starting point for reproducible document database experiments with BONDI"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "yanex>=0.7.0",
-    "pymongo>=4.13,<5",
-    "huggingface-hub>=0.30,<2",
     "pandas>=3.1.0",
     "matplotlib>=3.11.2",
     "ipykernel>=7.4.0",

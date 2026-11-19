@@ -2,6 +2,26 @@
 
 ## Unreleased
 
+## 0.2.0 — 2026-11-19
+
+- Return greeting strings from `hello_world()` and update the CLI, experiment, notebook, and tests.
+- Plot greeting lengths in the example notebook.
+
+- Refresh the lockfile, align the experiment test with its metric, and fix documentation links and references.
+
+- Add pytest and Ruff descriptions and documentation links to Dependencies.
+
+- Move tool explanations into a Dependencies page and include Zensical.
+
+- Add a Getting started guide for feature branches, checks, pull requests, and reviews.
+
+- Add uv and pip tabs for reinstalling the renamed project.
+
+- Explain how to preview documentation, view saved changes, and stop the local server.
+
+- Group installation, dependencies, renaming, Git workflow, functionality, documentation,
+  and progress instructions under User guide. Add an API reference and presentation examples.
+
 - Upgrade relcon-docs to 0.1.7 and apply shared Markdown defaults, including SmartSymbols arrows.
 
 - Document the hello module's arguments and return values with Google-style
