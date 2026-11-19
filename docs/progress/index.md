@@ -1,6 +1,6 @@
 # Progress
 
-- [Presentation template](template/presentation.md)
-- [Week 1](week-1/presentation.md)
+- [Presentation example](example/)
+- [Week 1](week-1/)
 
-See [Progress updates](../progress-updates.md) for writing steps and presentation controls.
+See [Progress updates](../progress-updates.md) in the user guide for writing steps and presentation controls.

@@ -1,4 +1,4 @@
-# Progress update template
+# Presentation example
 
 This example shows how to write progress updates as documentation pages.
 See [Progress updates](../../progress-updates.md) for presentation controls.
@@ -119,20 +119,8 @@ Use pipes for columns. `---:` right-aligns a numeric column.
 
 Replace the examples with a short account of your own work, for example:
 
-1. **Question:** What were you trying to achieve?
+1. **Goal:** What were you trying to achieve?
 2. **Progress:** What did you complete since the last meeting?
 3. **Results:** Show charts or tables to explain your findings.
 4. **Blockers:** What is unclear, and what feedback do you need?
 5. **Next steps:** What will you do before the next meeting?
-
-Keep each section focused. Copy this file and its images to a new weekly folder,
-then add the page to `nav` in `mkdocs.yml`.
-
-<!-- Presenter note: Ask which next experiment would be most informative. -->
-
----
-
-## More examples
-
-See the [shared presentation guide](https://relaxed-constraints.github.io/relcon-docs/presentation/)
-for presentation controls and configuration.

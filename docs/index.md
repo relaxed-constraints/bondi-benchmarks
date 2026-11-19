@@ -4,4 +4,4 @@ A starting point for database research with [BONDI](https://relaxed-constraints.
 and [Yanex](https://relaxed-constraints.github.io/yanex/).
 
 Start with [Installation](installation.md).
-Follow the Getting started pages to make this project your own.
+Follow the User guide pages to make this project your own.

@@ -8,7 +8,7 @@ repo_name: relaxed-constraints/bondi-empty-project
 copyright: Copyright &copy; 2026 Relaxed Constraints
 nav:
 - Home: index.md
-- Getting started:
+- User guide:
   - Installation: installation.md
   - Dependencies: dependencies.md
   - Renaming the project: renaming.md
@@ -16,12 +16,10 @@ nav:
   - Adding functionality: adding-functionality.md
   - Documentation changes: documentation.md
   - Progress updates: progress-updates.md
-- User guide: user-guide.md
 - API Reference: api-reference.md
 - Progress:
-  - Overview: progress/index.md
-  - Presentation template: progress/template/presentation.md
-  - Week 1: progress/week-1/presentation.md
+  - Presentation example: progress/example/
+  - Week 1: progress/week-1/
 plugins:
   mkdocstrings:
     handlers:

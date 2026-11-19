@@ -51,7 +51,11 @@ Repeat these steps as you work.
 When the change is ready for review, push your branch:
 
 ```sh
+# first push to create the remote branch
 git push -u origin my-new-feature
+
+# later updates
+git push
 ```
 
 Open your repository on GitHub.

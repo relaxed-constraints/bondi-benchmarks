@@ -37,4 +37,4 @@ def test_experiment_prints_greeting_and_logs_metric(monkeypatch, capsys):
     runpy.run_path(str(script), run_name="__main__")
 
     assert capsys.readouterr().out == "Hello, Student\n"
-    assert metrics == [{"name_length": 7}]
+    assert metrics == [{"greeting_length": 14}]

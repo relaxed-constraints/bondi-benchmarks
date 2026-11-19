@@ -50,7 +50,6 @@ pytest
 ```
 
 The command prints `Hello, World`.
-The tests do not need a database.
 
 ## Start the local documentation server
 

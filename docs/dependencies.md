@@ -10,35 +10,46 @@ running scripts. `uv` is a modern tool for Python project management that
 simplifies these tasks compared to traditional approaches using `virtualenv`,
 `pip`, and custom shell scripts.
 
+You don't need to use `uv` and can install the dependencies with `pip`, but using
+`uv` simplifies managing the project environment and dependencies.
+
 Read about `uv` features in the [official documentation](https://docs.astral.sh/uv/getting-started/features/).
 
-## Docker
+## pytest
 
-Docker is a platform for developing, shipping, and running applications in containers.
-Containers package an application and its dependencies, ensuring consistent behavior
-across different environments. It makes it very easy to start and manage containerized
-services, like databases locally for development and experimentation.
+pytest is a framework for writing and running Python tests.
+Run the tests in this project with `pytest`.
 
-Read more in the [official Docker documentation](https://docs.docker.com/get-started/).
+Read more in the [pytest documentation](https://docs.pytest.org/en/stable/).
 
-## BONDI
+## Ruff
 
-BONDI is a toolkit for conducting research with document databases, with a focus on MongoDB.
-It provides tools for deploying databases, generating, running and profiling query workloads,
-analysing the schema of database collections, and estimating cardinalities of queries.
+Ruff checks and formats Python code.
+This project uses it to find code errors, check imports, and keep formatting consistent.
+Run it with
 
-Use BONDI to add database experiments to this starter project.
+```sh
+ruff check
+ruff format --check
+```
 
-More info and the full documentation can be found on the [BONDI documentation site](https://relaxed-constraints.github.io/bondi/).
+Read more in the [Ruff documentation](https://docs.astral.sh/ruff/).
 
-## Yanex
+## pandas
 
-Yanex is a generic tool for managing experiments and tracking and analysing their results.
-It allows you to run scripts with specific configurations, record the outputs, and maintain
-a history of experiments. This is particularly useful for reproducibility and for
-understanding the impact of different parameters on your results.
+pandas provides DataFrames: tables that you can filter, group and summarise in
+Python. They are great for experiment analysis and data manipulation and work
+well together with Matplotlib and Jupyter notebooks.
 
-More info can be found in the [Yanex documentation](https://relaxed-constraints.github.io/yanex/).
+Read more in the [pandas documentation](https://pandas.pydata.org/docs/).
+
+## Matplotlib
+
+Matplotlib creates plots from Python data. We use it with pandas to generate charts and visualise
+experiment results.
+
+Read more in the [Matplotlib documentation](https://matplotlib.org/stable/users/index.html).
+
 
 ## Jupyter Notebooks
 
@@ -49,20 +60,6 @@ as the kernel that runs the code.
 
 Read more in the [Jupyter documentation](https://docs.jupyter.org/en/latest/).
 
-## pandas
-
-pandas provides DataFrames: tables that you can filter, group and summarise in
-Python. In this project, we use them to organise names, generate greetings, and
-calculate greeting lengths.
-
-Read more in the [pandas documentation](https://pandas.pydata.org/docs/).
-
-## Matplotlib
-
-Matplotlib creates plots from Python data. We use it with pandas to plot greeting
-lengths in the example notebook.
-
-Read more in the [Matplotlib documentation](https://matplotlib.org/stable/users/index.html).
 
 ## Zensical
 
@@ -71,16 +68,21 @@ This project uses it to preview and publish its documentation.
 
 Read more in the [Zensical documentation](https://zensical.org/docs/).
 
-## pytest
+## BONDI
 
-pytest is a framework for writing and running Python tests.
-This project uses it to check the greeting function and its consumers.
+BONDI is a toolkit for conducting research with document databases, with a focus on MongoDB
+and Couchbase. It provides tools for deploying databases, generating, running and profiling
+query workloads, analysing the schema of database collections, and generating load on a
+database for performance testing.
 
-Read more in the [pytest documentation](https://docs.pytest.org/en/stable/).
+More info and the full documentation can be found on the [BONDI documentation site](https://relaxed-constraints.github.io/bondi/).
 
-## Ruff
 
-Ruff checks and formats Python code.
-This project uses it to find code errors, check imports, and keep formatting consistent.
+## Yanex
 
-Read more in the [Ruff documentation](https://docs.astral.sh/ruff/).
+Yanex is a generic tool for managing experiments and tracking and analysing their results.
+It allows you to run scripts with specific configurations, record the outputs, and maintain
+a history of experiments. This is particularly useful for reproducibility and for
+understanding the impact of different parameters on your results.
+
+More info can be found in the [Yanex documentation](https://relaxed-constraints.github.io/yanex/).
