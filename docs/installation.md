@@ -1,6 +1,6 @@
 # Installation
 
-Use Python 3.11+, a local Docker engine, and the current BONDI checkout at `../bondi`. From this checkout:
+Use Python 3.11+ and a local Docker engine. From this checkout, install the dependencies, including BONDI 0.4 from PyPI:
 
 ```sh
 uv sync --extra yanex --extra couchbase

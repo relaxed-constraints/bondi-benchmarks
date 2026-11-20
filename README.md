@@ -6,7 +6,7 @@ The example Yanex experiment records one load phase and one measured run.
 
 ## Quick start
 
-From the repository root with BONDI checked out at `../bondi`:
+From the repository root:
 
 ```sh
 uv sync --locked --all-extras
