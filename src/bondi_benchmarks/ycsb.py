@@ -4,6 +4,7 @@ import json
 import re
 import subprocess
 from dataclasses import asdict, dataclass, field
+from importlib.metadata import version
 from pathlib import Path
 from tempfile import mkdtemp
 from typing import Self
@@ -16,7 +17,7 @@ from ._results import BenchmarkError, Result, parse_result
 
 __all__ = ["YCSB", "BenchmarkError", "Result", "Workload"]
 
-IMAGE = "bondi-benchmarks/ycsb:ae02b31-1"
+IMAGE = f"ghcr.io/relaxed-constraints/bondi-benchmarks/ycsb:{version('bondi-benchmarks')}"
 # These values come from the selected target and the typed workload arguments.
 RUNNER_PROPERTIES = {
     "recordcount",
@@ -66,6 +67,30 @@ def _docker(*args):
     except FileNotFoundError as exc:
         raise BenchmarkError("Docker CLI was not found") from exc
     return result.stdout.strip()
+
+
+def _runner_image_id(image):
+    inspect = ("image", "inspect", "--format", "{{.Id}}", image)
+    try:
+        return _docker(*inspect)
+    except BenchmarkError as exc:
+        # An unavailable daemon or a permissions error is not a cache miss.
+        if not any(
+            line.startswith(("Error: No such image:", "Error response from daemon: No such image:"))
+            for line in exc.stderr.splitlines()
+        ):
+            raise
+
+    print(f"Downloading YCSB runner {image}", flush=True)
+    try:
+        _docker("pull", image)
+    except BenchmarkError as exc:
+        raise BenchmarkError(
+            f"Could not pull YCSB runner {image}: {exc.stderr.strip() or exc}",
+            exc.stdout,
+            exc.stderr,
+        ) from exc
+    return _docker(*inspect)
 
 
 def _managed_network(deployment):
@@ -248,7 +273,7 @@ class YCSB:
                 "Benchmark destination contains data. Choose an empty destination."
             )
 
-        image_id = _docker("image", "inspect", "--format", "{{.Id}}", self.image)
+        image_id = _runner_image_id(self.image)
         network = _managed_network(deployment) if deployment else "bridge"
         endpoint = self.runner_endpoint
         props = dict(
@@ -314,6 +339,7 @@ class YCSB:
             "binding": binding,
             "database": self.database,
             "runner_image_id": image_id,
+            "runner_image": self.image,
             "deployment": deployment.name if deployment else None,
             "server_image": deployment.image if deployment else None,
         }

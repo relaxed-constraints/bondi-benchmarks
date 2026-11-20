@@ -1,4 +1,4 @@
-FROM maven:3.9-eclipse-temurin-8 AS build
+FROM --platform=$BUILDPLATFORM maven:3.9-eclipse-temurin-8 AS build
 WORKDIR /src
 ADD https://codeload.github.com/brianfrankcooper/YCSB/tar.gz/ae02b31fa7784b3892f121c06638aa0cd972fa06 /tmp/ycsb.tgz
 RUN echo '717c991f20aab76ad8ede371e7ff8bdc2b7ee05a1d6eda4818dc91102ca9651a  /tmp/ycsb.tgz' | sha256sum -c - && tar xzf /tmp/ycsb.tgz --strip-components=1

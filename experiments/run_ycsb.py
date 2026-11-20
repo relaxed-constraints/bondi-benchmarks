@@ -46,7 +46,12 @@ def main():
         )
 
     try:
-        benchmark = ycsb.YCSB.from_deployment(target, database, artifact_dir=artifact_dir)
+        benchmark = ycsb.YCSB.from_deployment(
+            target,
+            database,
+            image=params.get("runner_image", ycsb.IMAGE),
+            artifact_dir=artifact_dir,
+        )
         print(f"Loading data into {database}", flush=True)
         loaded = benchmark.load(workload)
         yanex.log_metrics(loaded.metrics(), step=0)

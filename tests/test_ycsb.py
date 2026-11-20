@@ -154,3 +154,31 @@ def test_factory_selects_runner_route(managed, monkeypatch):
         network.assert_called_once_with(deployment)
     else:
         network.assert_not_called()
+
+
+def test_image_pull_only_on_cache_miss(monkeypatch):
+    from unittest.mock import Mock, call
+
+    inspect = call("image", "inspect", "--format", "{{.Id}}", "runner:1")
+    docker = Mock(
+        side_effect=[
+            ycsb.BenchmarkError("inspect failed", stderr="Error: No such image: runner:1"),
+            "pulled",
+            "sha256:123",
+            "sha256:123",
+        ]
+    )
+    monkeypatch.setattr(ycsb, "_docker", docker)
+    assert ycsb._runner_image_id("runner:1") == "sha256:123"
+    assert ycsb._runner_image_id("runner:1") == "sha256:123"
+    assert docker.call_args_list == [inspect, call("pull", "runner:1"), inspect, inspect]
+
+
+def test_docker_inspection_error_is_reported(monkeypatch):
+    from unittest.mock import Mock
+
+    docker = Mock(side_effect=ycsb.BenchmarkError("daemon unavailable"))
+    monkeypatch.setattr(ycsb, "_docker", docker)
+    with pytest.raises(ycsb.BenchmarkError, match="daemon unavailable"):
+        ycsb._runner_image_id("runner:1")
+    docker.assert_called_once()

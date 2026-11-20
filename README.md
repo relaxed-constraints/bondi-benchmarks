@@ -10,16 +10,18 @@ From the repository root with BONDI checked out at `../bondi`:
 
 ```sh
 uv sync --locked --all-extras
-docker build -t bondi-benchmarks/ycsb:ae02b31-1 runner
 cd experiments
 uv run yanex run run_ycsb.py -p backend=mongodb
 ```
+
+Docker downloads the matching published runner on first use. For an unreleased
+checkout, see the [local build instructions](docs/installation.md).
 
 ## Project guide
 
 | Path | Purpose |
 | --- | --- |
-| [Installation](docs/installation.md) | Set up Python dependencies and build the runner |
+| [Installation](docs/installation.md) | Set up Python dependencies and the Docker runner |
 | [Python API guide](docs/ycsb.md) | Configure workloads and database connections |
 | [Experiment guide](docs/experiments.md) | Run and compare tracked experiments |
 | [src/bondi_benchmarks](src/bondi_benchmarks/) | Benchmark runner and results |
