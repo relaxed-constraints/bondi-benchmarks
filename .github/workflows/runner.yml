@@ -30,7 +30,8 @@ jobs:
           else
             tag="sha-$GITHUB_SHA"
           fi
-          echo "ref=ghcr.io/${GITHUB_REPOSITORY,,}/ycsb:$tag" >> "$GITHUB_OUTPUT"
+          repository=$(echo "$GITHUB_REPOSITORY" | tr '[:upper:]' '[:lower:]')
+          echo "ref=ghcr.io/$repository/ycsb:$tag" >> "$GITHUB_OUTPUT"
 
       - name: Publish Linux amd64 and arm64 image
         env:
