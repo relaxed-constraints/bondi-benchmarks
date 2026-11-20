@@ -1,7 +1,8 @@
-# BONDI Empty Project
+# BONDI Benchmarks
 
-A starting point for database research with [BONDI](https://relaxed-constraints.github.io/bondi/)
-and [Yanex](https://relaxed-constraints.github.io/yanex/).
+Run YCSB against MongoDB and Couchbase, then compare throughput and latency by operation.
+The Java client runs in Docker. Python handles execution and result interpretation.
 
-Start with [Installation](installation.md).
-Follow the User guide pages to make this project your own.
+1. [Install the package and build the runner](installation.md).
+2. [Run a disposable deployment with Yanex](experiments.md).
+3. [Use the Python API with an existing database](ycsb.md).

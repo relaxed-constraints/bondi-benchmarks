@@ -1,0 +1,14 @@
+--- a/mongodb/pom.xml
++++ b/mongodb/pom.xml
+@@ -35,11 +35,6 @@
+       <groupId>org.mongodb</groupId>
+       <artifactId>mongodb-driver-sync</artifactId>
+       <version>${mongodb.version}</version>
+-    </dependency>
+-    <dependency>
+-      <groupId>com.allanbank</groupId>
+-      <artifactId>mongodb-async-driver</artifactId>
+-      <version>${mongodb.async.version}</version>
+     </dependency>
+     <dependency>
+       <groupId>site.ycsb</groupId>

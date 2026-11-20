@@ -25,7 +25,9 @@ jobs:
         with:
           version: "0.13.6"
           python-version: ${{ matrix.python }}
-      - run: uv sync --locked
+      # Temporary sibling checkout for the editable BONDI dependency.
+      - run: git clone https://github.com/relaxed-constraints/bondi.git ../bondi && git -C ../bondi checkout 3f69ae8fea5709b5d417e72547be10a01a445e26
+      - run: uv sync --locked --extra yanex
       - run: uv run pytest
   quality:
     name: Lint, docs and distributions
@@ -38,7 +40,9 @@ jobs:
         with:
           version: "0.13.6"
           python-version: "3.11"
-      - run: uv sync --locked --group docs
+      # Temporary sibling checkout for the editable BONDI dependency.
+      - run: git clone https://github.com/relaxed-constraints/bondi.git ../bondi && git -C ../bondi checkout 3f69ae8fea5709b5d417e72547be10a01a445e26
+      - run: uv sync --locked --extra yanex --group docs
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - run: uv run relcon-docs configure --check
@@ -49,3 +53,7 @@ jobs:
         with:
           name: distributions
           path: release-dist/
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
+        if: github.workflow == 'Documentation'
+        with:
+          path: site

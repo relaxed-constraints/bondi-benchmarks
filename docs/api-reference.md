@@ -1,7 +1,9 @@
-# API Reference
+# API reference
 
-!!! tip "Generated API Reference"
+::: bondi_benchmarks.ycsb.Workload
 
-    The API reference is automatically generated from the code in the `src/` directory. See [Update the API reference](documentation/#update-the-api-reference) on how to add additional modules here.
+::: bondi_benchmarks.ycsb.YCSB
 
-::: empty_project.hello
+::: bondi_benchmarks.ycsb.Result
+
+::: bondi_benchmarks.ycsb.BenchmarkError

@@ -15,4 +15,11 @@ jobs:
       contents: read
       pages: write
       id-token: write
-    uses: relaxed-constraints/relcon-docs/.github/workflows/deploy-docs.yml@7a65409737b9e17086232b87ac95160ae58b2199
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency: github-pages
+    steps:
+      - uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
+        id: deployment

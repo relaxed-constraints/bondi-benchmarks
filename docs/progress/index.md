@@ -1,6 +1,12 @@
-# Progress
+# YCSB prototype
 
-- [Presentation example](example/)
-- [Week 1](week-1/)
+The first implementation runs YCSB in a pinned Docker image against MongoDB and Couchbase.
+The Yanex example provisions a disposable database and records separate load and run results.
 
-See [Progress updates](../progress-updates.md) in the user guide for writing steps and presentation controls.
+---
+
+## Interpreting updates
+
+With the pinned Couchbase KV binding, a single-field update replaces the entire document.
+Use the SQL++ path for partial updates, or configure full-record updates on both systems.
+See the [workload options](../ycsb.md).

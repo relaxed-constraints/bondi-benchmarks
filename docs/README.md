@@ -1,4 +1,3 @@
 # Project documentation
 
-Start with the [documentation home](index.md).
-See [Documentation changes](documentation.md) for writing, preview, and publishing steps.
+Start at the [documentation home](index.md). Preview locally with `uv run --group docs zensical serve`.

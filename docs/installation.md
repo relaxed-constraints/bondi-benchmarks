@@ -1,68 +1,16 @@
 # Installation
 
-Install Python 3.11 or newer and Git.
-Install Docker with Compose v2 to run local databases.
-
-## Copy the starter
-
-Clone the repository into your project directory:
+Use Python 3.11+, a local Docker engine, and the current BONDI checkout at `../bondi`. From this checkout:
 
 ```sh
-git clone https://github.com/relaxed-constraints/bondi-empty-project.git my-project
-cd my-project
+uv sync --extra yanex --extra couchbase
+docker build -t bondi-benchmarks/ycsb:ae02b31-1 runner
 ```
 
-Remove the starter remote:
+The build downloads checksum-pinned upstream YCSB commit `ae02b31fa7784b3892f121c06638aa0cd972fa06`. It uses the synchronous
+MongoDB driver 5.1.0 and Couchbase Java SDK 2.7.23. Two small build patches
+omit the unused legacy async MongoDB dependency and enable Couchbase RBAC.
+The benchmark workload and measurement code come from upstream. Runner images
+are local; each result records the exact image ID.
 
-```sh
-git remote remove origin
-```
-
-## Install dependencies
-
-=== "uv"
-
-    Install [uv](https://docs.astral.sh/uv/getting-started/installation/).
-
-    ```sh
-    uv sync --locked --group docs
-    source .venv/bin/activate
-    ```
-
-=== "pip"
-
-    ```sh
-    python -m venv .venv
-    source .venv/bin/activate
-    python -m pip install --upgrade pip
-    python -m pip install -e . --group dev --group docs
-    ```
-
-On Windows PowerShell, activate the environment with `.venv\Scripts\Activate.ps1`.
-The following pages assume an active environment.
-Run commands from the repository root unless a step specifies another directory.
-
-## Check the installation
-
-```sh
-empty-cli --name World
-pytest
-```
-
-The command prints `Hello, World`.
-
-## Start the local documentation server
-
-Run this command from the repository root with the project environment active:
-
-```sh
-zensical serve
-```
-
-Open the local URL printed in the terminal, usually <http://127.0.0.1:8000/>.
-Keep the command running while you edit pages under `docs/`.
-The server rebuilds the site and refreshes your browser when you save changes.
-
-Press **Ctrl+C** in the terminal to stop the server.
-
-Continue with [Renaming the project](renaming.md).
+For development checks, install the documentation dependencies with `uv sync --locked --all-extras --group docs`.

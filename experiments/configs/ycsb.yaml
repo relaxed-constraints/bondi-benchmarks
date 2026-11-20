@@ -1,0 +1,19 @@
+backend: mongodb
+# A quoted major.minor.patch version, or null for the BONDI default.
+version: null
+mongodb_port: 27029
+management_port: 18091
+query_port: 18093
+kv_port: 21210
+database: ycsb_lab
+workload:
+  profile: B
+  record_count: 1000
+  operation_count: 5000
+  threads: 4
+  properties:
+    # YCSB supplies one field per update. Set true to update every field.
+    writeallfields: false
+    # Couchbase only. KV replaces the document with the supplied fields.
+    # Set false to use SQL++ and preserve untouched fields on a single-field update.
+    couchbase.kv: true

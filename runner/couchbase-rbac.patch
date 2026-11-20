@@ -1,0 +1,14 @@
+--- a/couchbase2/src/main/java/site/ycsb/db/couchbase2/Couchbase2Client.java
++++ b/couchbase2/src/main/java/site/ycsb/db/couchbase2/Couchbase2Client.java
+@@ -201,8 +201,9 @@
+         }
+       }
+ 
+-      cluster = CouchbaseCluster.create(env, host);
+-      bucket = cluster.openBucket(bucketName, bucketPassword);
++      cluster = CouchbaseCluster.fromConnectionString(env, host);
++      cluster.authenticate(props.getProperty("couchbase.username"), bucketPassword);
++      bucket = cluster.openBucket(bucketName);
+       kvTimeout = env.kvTimeout();
+     } catch (Exception ex) {
+       throw new DBException("Could not connect to Couchbase Bucket.", ex);

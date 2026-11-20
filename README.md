@@ -1,26 +1,32 @@
-# BONDI empty project
+# bondi-benchmarks
 
-A minimal starting point for researchers and students building their own BONDI research project.
-It uses the same structure as [bondi-demo-project](https://github.com/relaxed-constraints/bondi-demo-project), but starts with a barebones setup with one reusable function and examples of calling it from an experiment, a notebook, a Yanex script and a test.
+Run the Java Yahoo! Cloud Serving Benchmark (YCSB) against MongoDB or Couchbase
+from Python. The package controls a Docker client and interprets measurements.
+The example Yanex experiment records one load phase and one measured run.
 
-See the [Documentation](https://relaxed-constraints.github.io/bondi-empty-project/) for details.
+## Quick start
 
-## Repository structure
+From the repository root with BONDI checked out at `../bondi`:
 
-| Directory | Purpose |
+```sh
+uv sync --locked --all-extras
+docker build -t bondi-benchmarks/ycsb:ae02b31-1 runner
+cd experiments
+uv run yanex run run_ycsb.py -p backend=mongodb
+```
+
+## Project guide
+
+| Path | Purpose |
 | --- | --- |
-| `experiments/` | Yanex experiment scripts and config files |
-| `notebooks/` | Jupyter notebooks to analyse results and test functionality |
-| `docs/` | Project documentation |
-| `docs/progress/` | Progress updates with presentation mode |
-| `src/` | Reusable Python code goes here |
-| `tests/` | Unit tests for the reusable Python code in `src/` |
-
-
-## Getting started
-
-Start with [Installation](docs/installation.md).
-Follow the [rename checklist](docs/renaming.md) to make the project your own.
+| [Installation](docs/installation.md) | Set up Python dependencies and build the runner |
+| [Python API guide](docs/ycsb.md) | Configure workloads and database connections |
+| [Experiment guide](docs/experiments.md) | Run and compare tracked experiments |
+| [src/bondi_benchmarks](src/bondi_benchmarks/) | Benchmark runner and results |
+| [experiments](experiments/) | Yanex script and YAML configuration |
+| [runner](runner/) | Pinned Java runner build |
+| [notebooks](notebooks/) | Inspect saved measurements |
+| [tests](tests/) | Package and documentation configuration checks |
 
 ## License
 
