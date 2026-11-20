@@ -39,11 +39,11 @@ def test_deployment_keeps_main_and_manual_triggers_after_checks():
     assert not (ROOT / ".github/workflows/pages.yml").exists()
 
 
-def test_progress_is_last_and_docs_build():
+def test_navigation_and_strict_docs_build():
     yaml = pytest.importorskip("yaml")
     config = yaml.safe_load((ROOT / "mkdocs.yml").read_text())
     tabs = [next(iter(item)) for item in config["nav"]]
-    assert tabs[-1] == "Progress"
+    assert "Progress" not in tabs
     assert "Results" not in tabs
     result = subprocess.run(
         ["zensical", "build", "--strict"],

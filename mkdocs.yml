@@ -13,8 +13,6 @@ nav:
   - YCSB Python API: ycsb.md
   - Yanex experiments: experiments.md
 - API Reference: api-reference.md
-- Progress:
-  - YCSB prototype: progress/index.md
 plugins:
   mkdocstrings:
     handlers:
