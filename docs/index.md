@@ -6,7 +6,7 @@ BONDI Benchmarks provides Python tools and [Yanex](https://relaxed-constraints.g
 
 ### YCSB
 
-The Yahoo! Cloud Serving Benchmark (YCSB) measures throughput and latency for database operations.
+The [Yahoo! Cloud Serving Benchmark (YCSB)](https://github.com/brianfrankcooper/YCSB) measures throughput and latency for database operations.
 The runner supports MongoDB and Couchbase.
 
 1. [Install the project](installation.md).
