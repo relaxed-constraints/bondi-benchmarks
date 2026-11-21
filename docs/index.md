@@ -1,6 +1,6 @@
 # BONDI Benchmarks
 
-BONDI Benchmarks provides Python tools and Yanex experiments for database benchmarks.
+BONDI Benchmarks provides Python tools and [Yanex](https://relaxed-constraints.github.io/yanex/) experiments for database benchmarks.
 
 ## Available benchmarks
 
