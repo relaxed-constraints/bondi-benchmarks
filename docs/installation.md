@@ -29,4 +29,4 @@ from GitHub Container Registry. The image includes Java and the YCSB bindings.
 Later experiments use the local Docker cache. Each result records the image
 reference and the local image ID used for execution.
 
-Continue to the [first YCSB experiment](benchmarks/ycsb/experiments.md).
+Continue to the [Yanex experiment](benchmarks/ycsb/experiments.md).

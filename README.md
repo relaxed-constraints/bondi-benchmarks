@@ -8,7 +8,7 @@ The Yahoo! Cloud Serving Benchmark (YCSB) measures throughput and latency for da
 The runner supports MongoDB and Couchbase.
 
 1. [Install the project](docs/installation.md).
-2. [Run the first YCSB experiment](docs/benchmarks/ycsb/experiments.md).
+2. [Run the Yanex experiment](docs/benchmarks/ycsb/experiments.md).
 3. [Interpret the results](docs/benchmarks/ycsb/results.md).
 
 Use the [Python guide](docs/benchmarks/ycsb/python.md) to run YCSB against an existing database.

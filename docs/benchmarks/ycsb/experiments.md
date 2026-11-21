@@ -1,4 +1,4 @@
-# Run YCSB with Yanex
+# Yanex experiment
 
 Activate the project environment. From the repository root, enter the experiment directory.
 

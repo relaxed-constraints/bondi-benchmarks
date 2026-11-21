@@ -12,7 +12,7 @@ nav:
 - Benchmarks:
   - YCSB:
     - Python guide: benchmarks/ycsb/python.md
-    - First experiment: benchmarks/ycsb/experiments.md
+    - Yanex experiment: benchmarks/ycsb/experiments.md
     - Results: benchmarks/ycsb/results.md
 - API Reference:
   - YCSB: api/ycsb.md
