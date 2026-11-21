@@ -1,4 +1,4 @@
-"""Exercise the example without requiring Docker or the optional Yanex dependency."""
+"""Exercise the example with a mock tracker and no Docker deployment."""
 
 import runpy
 import sys

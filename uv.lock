@@ -267,14 +267,12 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "bondi" },
+    { name = "yanex" },
 ]
 
 [package.optional-dependencies]
 couchbase = [
     { name = "bondi", extra = ["couchbase"] },
-]
-yanex = [
-    { name = "yanex" },
 ]
 
 [package.dev-dependencies]
@@ -290,9 +288,9 @@ docs = [
 requires-dist = [
     { name = "bondi", specifier = ">=0.4.0,<0.5" },
     { name = "bondi", extras = ["couchbase"], marker = "extra == 'couchbase'", specifier = ">=0.4.0,<0.5" },
-    { name = "yanex", marker = "extra == 'yanex'", specifier = ">=0.7,<1" },
+    { name = "yanex", specifier = ">=0.7,<1" },
 ]
-provides-extras = ["couchbase", "yanex"]
+provides-extras = ["couchbase"]
 
 [package.metadata.requires-dev]
 dev = [

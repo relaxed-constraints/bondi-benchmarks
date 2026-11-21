@@ -7,12 +7,12 @@ git clone https://github.com/relaxed-constraints/bondi-benchmarks.git
 cd bondi-benchmarks
 ```
 
-Select one installation method. Both methods install the package with Yanex and Couchbase support.
+Select one installation method. The base package includes Yanex and MongoDB support. The commands below also install the optional Couchbase support.
 
 === "uv"
 
     ```sh
-    uv sync --locked --extra yanex --extra couchbase
+    uv sync --locked --extra couchbase
     source .venv/bin/activate
     ```
 
@@ -21,7 +21,7 @@ Select one installation method. Both methods install the package with Yanex and 
     ```sh
     python -m venv .venv
     source .venv/bin/activate
-    python -m pip install --editable '.[yanex,couchbase]'
+    python -m pip install --editable '.[couchbase]'
     ```
 
 On the first YCSB run, Docker downloads `ghcr.io/relaxed-constraints/bondi-benchmarks/ycsb:0.1.0`

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Install Yanex with the base package.
+
 - Document YCSB parameters and return values in the Python API reference.
 
 - Run the YCSB example with `yanex run benchmark.py -c configs/default.yaml` from `experiments/ycsb/`.
