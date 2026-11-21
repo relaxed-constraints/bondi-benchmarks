@@ -24,10 +24,12 @@ finally:
 
 ## From an existing connection
 
-Use a dedicated database with an empty `usertable` collection. Python and the YCSB container must both reach the same MongoDB server.
+Use a dedicated database. If `usertable` already exists, it must contain no documents.
+MongoDB creates the collection on the first insert if it does not exist.
 
-This example uses Docker Desktop. Python connects to MongoDB on the host through `localhost`.
-Inside the container, `localhost` refers to the container itself. Use `runner_endpoint` to give YCSB the host address.
+This example assumes MongoDB runs directly on the host machine and listens on port 27017.
+Python connects to `localhost`. Inside the YCSB container, `localhost` refers to the container itself.
+The example uses Docker Desktop’s `host.docker.internal` address so the container can reach MongoDB on the host.
 
 ```python
 from bondi import MongoConnection
