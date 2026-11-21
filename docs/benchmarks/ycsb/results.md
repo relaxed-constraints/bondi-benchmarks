@@ -44,6 +44,8 @@ print(metrics[["metric_name", "value"]])
 
 ## Compare backends
 
+When comparing results across backends, account for [how Docker affects measurements](overview.md#how-docker-affects-measurements).
+
 Use freshly loaded data for each backend. Run one benchmark at a time on each host.
 
 Profile B reads and updates records. By default, YCSB sends one field for each update.

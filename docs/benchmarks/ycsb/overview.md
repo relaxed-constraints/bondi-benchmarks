@@ -13,6 +13,15 @@ YCSB measures performance from the client. **Throughput** tells you how many ope
 **Latency** tells you how long an operation takes. YCSB reports latency separately for reads, updates, and other operation types.
 For example, a 99th percentile read latency of 2 milliseconds means about 99% of reads finished within 2 milliseconds.
 
+## How Docker affects measurements
+
+BONDI Benchmarks runs the YCSB client in Docker. The Yanex experiment also runs the database in Docker.
+Compared with a native installation, Docker can add overhead. Grambow et al. (2018) found that the effect varied across benchmark configurations.
+See [*Dockerization Impacts in Database Performance Benchmarking*](https://arxiv.org/abs/1812.04362).
+
+Use these runs mainly for relative comparisons. Keep the host, workload, and Docker settings fixed except for the factor you want to study.
+Absolute throughput and latency describe the setup you measured. To draw conclusions about a native installation, repeat the benchmark there.
+
 ## Workload profiles
 
 The six core profiles represent different patterns of database use. The table gives the default mix for each profile.
