@@ -1,7 +1,7 @@
 [project]
 name = "bondi-benchmarks"
 authors = [{ name = "Thomas Rueckstiess", email = "thomas@relcon.ai" }]
-version = "0.1.0"
+version = "0.1.1"
 description = "Run native database benchmarks against BONDI targets"
 readme = "README.md"
 requires-python = ">=3.11"
