@@ -8,11 +8,14 @@ repo_name: relaxed-constraints/bondi-benchmarks
 copyright: Copyright &copy; 2026 Relaxed Constraints
 nav:
 - Home: index.md
-- User guide:
-  - Installation: installation.md
-  - YCSB Python API: ycsb.md
-  - Yanex experiments: experiments.md
-- API Reference: api-reference.md
+- Installation: installation.md
+- Benchmarks:
+  - YCSB:
+    - First experiment: benchmarks/ycsb/experiments.md
+    - Python guide: benchmarks/ycsb/python.md
+    - Results: benchmarks/ycsb/results.md
+- API Reference:
+  - YCSB: api/ycsb.md
 plugins:
   mkdocstrings:
     handlers:

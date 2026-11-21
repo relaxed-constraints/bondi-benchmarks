@@ -1,8 +1,16 @@
 # BONDI Benchmarks
 
-Run YCSB against MongoDB and Couchbase, then compare throughput and latency by operation.
-The Java client runs in Docker. Python handles execution and result interpretation.
+BONDI Benchmarks provides Python tools and Yanex experiments for database benchmarks.
 
-1. [Install the package and build the runner](installation.md).
-2. [Run a disposable deployment with Yanex](experiments.md).
-3. [Use the Python API with an existing database](ycsb.md).
+## Available benchmarks
+
+### YCSB
+
+The Yahoo! Cloud Serving Benchmark (YCSB) measures throughput and latency for database operations.
+The runner supports MongoDB and Couchbase.
+
+1. [Install the project](installation.md).
+2. [Run the first YCSB experiment](benchmarks/ycsb/experiments.md).
+3. [Interpret the results](benchmarks/ycsb/results.md).
+
+Use the [Python guide](benchmarks/ycsb/python.md) to run YCSB against an existing database.

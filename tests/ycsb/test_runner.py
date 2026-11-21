@@ -2,8 +2,9 @@ import pytest
 from bondi import MongoConnection
 
 from bondi_benchmarks import ycsb
-from bondi_benchmarks._results import parse_result
-from bondi_benchmarks.ycsb import _mongo_uri, _properties
+from bondi_benchmarks.ycsb import _runner
+from bondi_benchmarks.ycsb._results import parse_result
+from bondi_benchmarks.ycsb._runner import _mongo_uri, _properties
 
 OUTPUT = """[OVERALL], Throughput(ops/sec), 100.5
 [READ], Operations, 20
@@ -128,7 +129,7 @@ def test_factory_selects_runner_route(managed, monkeypatch):
     from unittest.mock import Mock
 
     connection = MongoConnection("mongodb://localhost:27029")
-    deployment = Mock(spec=ycsb.Deployment)
+    deployment = Mock(spec=_runner.Deployment)
     deployment.connection = connection
     deployment.name = "local"
     deployment.image = "mongo:test"
@@ -140,10 +141,10 @@ def test_factory_selects_runner_route(managed, monkeypatch):
         )
 
     network = Mock(return_value="container:db")
-    monkeypatch.setattr(ycsb, "_managed_network", network)
-    monkeypatch.setattr(ycsb, "_docker", lambda *args: "image-id")
-    run = Mock(return_value=ycsb.subprocess.CompletedProcess([], 0, OUTPUT, ""))
-    monkeypatch.setattr(ycsb.subprocess, "run", run)
+    monkeypatch.setattr(_runner, "_managed_network", network)
+    monkeypatch.setattr(_runner, "_docker", lambda *args: "image-id")
+    run = Mock(return_value=_runner.subprocess.CompletedProcess([], 0, OUTPUT, ""))
+    monkeypatch.setattr(_runner.subprocess, "run", run)
     result = benchmark.run(ycsb.Workload("C", 20, 20))
     cmd = run.call_args.args[0]
     assert cmd[cmd.index("--network") + 1] == ("container:db" if managed else "bridge")
@@ -168,9 +169,9 @@ def test_image_pull_only_on_cache_miss(monkeypatch):
             "sha256:123",
         ]
     )
-    monkeypatch.setattr(ycsb, "_docker", docker)
-    assert ycsb._runner_image_id("runner:1") == "sha256:123"
-    assert ycsb._runner_image_id("runner:1") == "sha256:123"
+    monkeypatch.setattr(_runner, "_docker", docker)
+    assert _runner._runner_image_id("runner:1") == "sha256:123"
+    assert _runner._runner_image_id("runner:1") == "sha256:123"
     assert docker.call_args_list == [inspect, call("pull", "runner:1"), inspect, inspect]
 
 
@@ -178,7 +179,7 @@ def test_docker_inspection_error_is_reported(monkeypatch):
     from unittest.mock import Mock
 
     docker = Mock(side_effect=ycsb.BenchmarkError("daemon unavailable"))
-    monkeypatch.setattr(ycsb, "_docker", docker)
+    monkeypatch.setattr(_runner, "_docker", docker)
     with pytest.raises(ycsb.BenchmarkError, match="daemon unavailable"):
-        ycsb._runner_image_id("runner:1")
+        _runner._runner_image_id("runner:1")
     docker.assert_called_once()

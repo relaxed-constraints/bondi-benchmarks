@@ -21,6 +21,7 @@ def test_disposable_deployment(tmp_path, monkeypatch, backend, fail):
         "workload": {"profile": "B", "record_count": 10, "operation_count": 10},
     }
     tracker = Mock()
+    tracker.is_standalone.return_value = False
     tracker.get_params.return_value = params
     tracker.get_experiment_id.return_value = "abcd1234"
     tracker.get_artifacts_dir.return_value = tmp_path
@@ -30,7 +31,7 @@ def test_disposable_deployment(tmp_path, monkeypatch, backend, fail):
     monkeypatch.setattr(deployment, f"deploy_{backend}", deploy)
     factory = Mock()
     monkeypatch.setattr(ycsb.YCSB, "from_deployment", factory)
-    main = runpy.run_path(str(Path(__file__).resolve().parents[1] / "experiments/run_ycsb.py"))[
+    main = runpy.run_path(str(Path(__file__).resolve().parents[2] / "experiments/ycsb/run.py"))[
         "main"
     ]
 
@@ -52,13 +53,13 @@ def test_disposable_deployment(tmp_path, monkeypatch, backend, fail):
 
 def test_standalone_uses_fallback_id(monkeypatch):
     tracker = Mock()
-    tracker.get_experiment_id.return_value = None
+    tracker.is_standalone.return_value = True
     monkeypatch.setitem(sys.modules, "yanex", tracker)
     deploy = Mock()
     monkeypatch.setattr(deployment, "deploy_mongodb", deploy)
     factory = Mock()
     monkeypatch.setattr(ycsb.YCSB, "from_deployment", factory)
-    main = runpy.run_path(str(Path(__file__).resolve().parents[1] / "experiments/run_ycsb.py"))[
+    main = runpy.run_path(str(Path(__file__).resolve().parents[2] / "experiments/ycsb/run.py"))[
         "main"
     ]
     main()

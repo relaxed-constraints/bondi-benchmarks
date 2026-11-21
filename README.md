@@ -1,34 +1,31 @@
-# bondi-benchmarks
+# BONDI Benchmarks
 
-Run the Java Yahoo! Cloud Serving Benchmark (YCSB) against MongoDB or Couchbase
-from Python. The package controls a Docker client and interprets measurements.
-The example Yanex experiment records one load phase and one measured run.
+BONDI Benchmarks provides Python tools and Yanex experiments for database benchmarks.
 
-## Quick start
+## Available benchmarks
 
-From the repository root:
+The Yahoo! Cloud Serving Benchmark (YCSB) measures throughput and latency for database operations.
+The runner supports MongoDB and Couchbase.
 
-```sh
-uv sync --locked --all-extras
-cd experiments
-uv run yanex run run_ycsb.py -p backend=mongodb
-```
+1. [Install the project](docs/installation.md).
+2. [Run the first YCSB experiment](docs/benchmarks/ycsb/experiments.md).
+3. [Interpret the results](docs/benchmarks/ycsb/results.md).
 
-Docker downloads the matching published runner on first use. For an unreleased
-checkout, see the [local build instructions](docs/installation.md).
+Use the [Python guide](docs/benchmarks/ycsb/python.md) to run YCSB against an existing database.
 
-## Project guide
+## Repository layout
 
-| Path | Purpose |
+Each benchmark uses the same directory name across the repository.
+
+| Directory | Contents |
 | --- | --- |
-| [Installation](docs/installation.md) | Set up Python dependencies and the Docker runner |
-| [Python API guide](docs/ycsb.md) | Configure workloads and database connections |
-| [Experiment guide](docs/experiments.md) | Run and compare tracked experiments |
-| [src/bondi_benchmarks](src/bondi_benchmarks/) | Benchmark runner and results |
-| [experiments](experiments/) | Yanex script and YAML configuration |
-| [runner](runner/) | Pinned Java runner build |
-| [notebooks](notebooks/) | Inspect saved measurements |
-| [tests](tests/) | Package and documentation configuration checks |
+| `src/bondi_benchmarks/<benchmark>/` | Python API and result types |
+| `experiments/<benchmark>/` | Yanex scripts and configurations |
+| `runners/<benchmark>/` | Docker build files |
+| `notebooks/<benchmark>/` | Analysis notebooks |
+| `tests/<benchmark>/` | Benchmark tests |
+| `docs/benchmarks/<benchmark>/` | User guides |
+| `docs/api/<benchmark>.md` | API reference |
 
 ## License
 

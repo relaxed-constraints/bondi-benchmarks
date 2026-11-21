@@ -7,7 +7,7 @@ query_port: 18093
 kv_port: 21210
 database: ycsb_lab
 workload:
-  profile: B
+  profile: C
   record_count: 1000
   operation_count: 5000
   threads: 4

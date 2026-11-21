@@ -11,15 +11,16 @@ from bondi_benchmarks import ycsb
 
 
 def main():
-    run_id = yanex.get_experiment_id()
-    if run_id is None:
+    if yanex.is_standalone():
         run_id = uuid4().hex[:8]
-        config = Path(__file__).parent / "configs" / "ycsb.yaml"
+        config = Path(__file__).parent / "configs" / "default.yaml"
         params = yaml.safe_load(config.read_text())
         artifact_dir = Path("artifacts") / run_id
     else:
+        run_id = yanex.get_experiment_id()
         params = yanex.get_params()
         artifact_dir = yanex.get_artifacts_dir()
+
     backend = params.get("backend", "mongodb")
     if backend not in {"mongodb", "couchbase"}:
         raise ValueError("backend must be mongodb or couchbase")
@@ -29,14 +30,17 @@ def main():
     if not isinstance(params.get("workload"), dict) or not database:
         raise ValueError(
             "A database and workload mapping are required. From experiments/, "
-            "run yanex run run_ycsb.py -c configs/ycsb.yaml -p backend=couchbase"
+            "run yanex run ycsb/run.py -c ycsb/configs/default.yaml -p backend=couchbase"
         )
+
     workload = ycsb.Workload(**params["workload"])
+
+    # deploy the database backend
     print(f"Starting deployment {name}", flush=True)
     if backend == "mongodb":
-        target = deploy_mongodb(name, version=version, port=params.get("mongodb_port", 27029))
+        deployment = deploy_mongodb(name, version=version, port=params.get("mongodb_port", 27029))
     else:
-        target = deploy_couchbase(
+        deployment = deploy_couchbase(
             name,
             version=version,
             bucket=database,
@@ -46,8 +50,9 @@ def main():
         )
 
     try:
+        # create benchmark and load data
         benchmark = ycsb.YCSB.from_deployment(
-            target,
+            deployment,
             database,
             image=params.get("runner_image", ycsb.IMAGE),
             artifact_dir=artifact_dir,
@@ -56,6 +61,7 @@ def main():
         loaded = benchmark.load(workload)
         yanex.log_metrics(loaded.metrics(), step=0)
 
+        # run the benchmark
         print(
             f"Running YCSB workload {workload.profile} "
             f"({workload.record_count:,} records, {workload.operation_count:,} operations, "
@@ -66,7 +72,7 @@ def main():
         yanex.log_metrics(result.metrics(), step=0)
     finally:
         print(f"Removing deployment {name}", flush=True)
-        target.remove()
+        deployment.remove()
 
 
 if __name__ == "__main__":

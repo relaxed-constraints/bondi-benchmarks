@@ -4,7 +4,6 @@ import json
 import re
 import subprocess
 from dataclasses import asdict, dataclass, field
-from importlib.metadata import version
 from pathlib import Path
 from tempfile import mkdtemp
 from typing import Self
@@ -17,7 +16,7 @@ from ._results import BenchmarkError, Result, parse_result
 
 __all__ = ["YCSB", "BenchmarkError", "Result", "Workload"]
 
-IMAGE = f"ghcr.io/relaxed-constraints/bondi-benchmarks/ycsb:{version('bondi-benchmarks')}"
+IMAGE = "ghcr.io/relaxed-constraints/bondi-benchmarks/ycsb:0.1.0"
 # These values come from the selected target and the typed workload arguments.
 RUNNER_PROPERTIES = {
     "recordcount",
