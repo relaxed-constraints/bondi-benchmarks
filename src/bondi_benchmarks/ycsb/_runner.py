@@ -33,6 +33,18 @@ RUNNER_PROPERTIES = {
 
 @dataclass(frozen=True)
 class Workload:
+    """Configure a YCSB workload.
+
+    Args:
+        profile: YCSB workload letter from A through F.
+        record_count: Number of records in the dataset.
+        operation_count: Number of operations in the run phase.
+        threads: Number of client threads for each phase.
+        target_ops_s: Target operations per second. Use None for unlimited throughput.
+        properties: Additional YCSB workload or database binding properties.
+            Both phases receive these values.
+    """
+
     profile: str
     record_count: int
     operation_count: int
@@ -185,6 +197,18 @@ class YCSB:
         same database and its advertised service addresses. Inside the runner,
         localhost points to the runner itself. Supply runner_endpoint when the
         same database has a different address from inside Docker.
+
+        Args:
+            connection: BONDI connection for host access and database credentials.
+            database: Dedicated MongoDB database or Couchbase bucket name.
+            runner_endpoint: Address of the same database from inside Docker.
+                Omit this argument to use the address from the connection.
+            image: Docker image reference for the YCSB client.
+            artifact_dir: Parent directory for phase logs and results.
+                Omit this argument to skip writing artifact files.
+
+        Returns:
+            A YCSB runner configured for the existing database.
         """
         if not isinstance(connection, (MongoConnection, CouchbaseConnection)):
             raise TypeError("Expected a MongoConnection or CouchbaseConnection")
@@ -205,6 +229,16 @@ class YCSB:
         Each YCSB container shares the database container's network namespace
         and connects to its internal port over loopback. The caller manages
         the database deployment's lifecycle.
+
+        Args:
+            deployment: Running BONDI deployment on the local Docker engine.
+            database: Dedicated MongoDB database or Couchbase bucket name.
+            image: Docker image reference for the YCSB client.
+            artifact_dir: Parent directory for phase logs and results.
+                Omit this argument to skip writing artifact files.
+
+        Returns:
+            A YCSB runner configured for the local deployment.
         """
         if not isinstance(deployment, Deployment):
             raise TypeError("Expected a BONDI Deployment")
@@ -231,9 +265,27 @@ class YCSB:
         return self
 
     def load(self, workload: Workload, *, threads: int | None = None) -> Result:
+        """Load the dataset into an empty destination.
+
+        Args:
+            workload: Workload that specifies the dataset and load properties.
+            threads: Number of client threads for this load.
+                Omit this argument to use the workload thread count.
+
+        Returns:
+            Validated measurements and diagnostic output for the load phase.
+        """
         return self._execute("load", workload, workload.threads if threads is None else threads)
 
     def run(self, workload: Workload) -> Result:
+        """Run the workload against the loaded dataset.
+
+        Args:
+            workload: Workload that specifies the operations and client settings.
+
+        Returns:
+            Validated measurements and diagnostic output for the run phase.
+        """
         return self._execute("run", workload, workload.threads)
 
     def _execute(self, phase, workload, threads):

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Document YCSB parameters and return values in the Python API reference.
+
 - Run the YCSB example with `yanex run benchmark.py -c configs/default.yaml` from `experiments/ycsb/`.
 
 - Group code, experiments, runners, and documentation by benchmark. Keep the existing YCSB imports.

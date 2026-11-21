@@ -6,7 +6,13 @@ from dataclasses import asdict, dataclass
 
 
 class BenchmarkError(RuntimeError):
-    """A failed phase with captured, sanitized diagnostic output."""
+    """Report a benchmark failure with diagnostic output.
+
+    Args:
+        message (str): Description of the failure.
+        stdout (str): Captured standard output, if available.
+        stderr (str): Captured standard error, if available.
+    """
 
     def __init__(self, message, stdout="", stderr=""):
         super().__init__(message)
@@ -16,6 +22,15 @@ class BenchmarkError(RuntimeError):
 
 @dataclass(frozen=True)
 class Operation:
+    """Describe measurements for one operation type.
+
+    Args:
+        count: Number of completed operations.
+        statuses: Counts by YCSB return status.
+        p95_us: 95th percentile latency in microseconds, if available.
+        p99_us: 99th percentile latency in microseconds, if available.
+    """
+
     count: int
     statuses: dict[str, int]
     p95_us: float | None
@@ -24,6 +39,18 @@ class Operation:
 
 @dataclass(frozen=True)
 class Result:
+    """Store measurements and diagnostics for one YCSB phase.
+
+    Args:
+        phase: Phase name, either load or run.
+        throughput_ops_s: Overall throughput in operations per second.
+        operations: Measurements by YCSB operation name. Each value contains
+            the count, status counts, and available latency percentiles in microseconds.
+        configuration: Settings that identify the workload and its execution environment.
+        stdout: Standard output from the runner.
+        stderr: Standard error from the runner.
+    """
+
     phase: str
     throughput_ops_s: float
     operations: dict[str, Operation]
@@ -32,6 +59,11 @@ class Result:
     stderr: str
 
     def metrics(self):
+        """Collect numeric measurements for experiment tracking.
+
+        Returns:
+            dict: Phase-prefixed throughput, operation counts, and available latency percentiles.
+        """
         metrics = {f"{self.phase}_throughput_ops_s": self.throughput_ops_s}
         for name, op in self.operations.items():
             prefix = f"{self.phase}_{name.lower().replace('-', '_')}"
@@ -42,6 +74,11 @@ class Result:
         return metrics
 
     def to_dict(self):
+        """Prepare the result for JSON serialization.
+
+        Returns:
+            dict: Schema version, phase, throughput, per-operation measurements, and configuration.
+        """
         return {
             "schema_version": 1,
             "phase": self.phase,
