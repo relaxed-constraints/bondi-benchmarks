@@ -1,71 +1,49 @@
-# YCSB Python API
+# Run YCSB from Python
+
+Both examples load 1,000 records into MongoDB and run 5,000 reads with YCSB profile C.
+
+## From a BONDI deployment
+
+Start MongoDB with BONDI. Pass the deployment to YCSB. BONDI supplies the connection details.
 
 ```python
 from bondi.deployment import deploy_mongodb
 from bondi_benchmarks import ycsb
 
 deployment = deploy_mongodb("ycsb-mongo", port=27029)
-benchmark = ycsb.YCSB.from_deployment(deployment, database="ycsb_lab")
-workload = ycsb.Workload("C", record_count=1000, operation_count=5000, threads=4)
+try:
+    benchmark = ycsb.YCSB.from_deployment(deployment, database="ycsb_lab")
+    workload = ycsb.Workload("C", record_count=1000, operation_count=5000, threads=4)
 
-loaded = benchmark.load(workload)
-result = benchmark.run(workload)
-print(result.throughput_ops_s, result.operations["READ"].p99_us)
+    benchmark.load(workload)
+    result = benchmark.run(workload)
+    print(result.throughput_ops_s, "operations per second")
+finally:
+    deployment.remove()  # Remove the example deployment and its data.
 ```
 
-For Couchbase, create a deployment with a dedicated bucket, for example
-`deploy_couchbase("ycsb-couch", bucket="ycsb_lab")`, and pass that deployment
-to `YCSB.from_deployment()`. Use free management, query and KV ports if running
-other Couchbase deployments. The load checks MongoDB's `usertable` collection
-or the Couchbase bucket's default collection for existing documents. Couchbase
-requires a pre-existing bucket and a server supporting KV range scan for this check.
-Use a dedicated destination with one writer. A failed load can leave partial data.
-Choose a fresh destination before retrying. The package never resets the database.
+## From an existing connection
 
-For an existing database, pass a `MongoConnection` or `CouchbaseConnection` to
-`benchmark = ycsb.YCSB.from_connection(connection, database="ycsb_lab")`.
-This factory uses bridge networking. Inside the runner, localhost refers to the
-runner itself. For a local BONDI deployment use `from_deployment(deployment, ...)`
-to select the managed route automatically.
-The Python connection must reach the target for the load check. The Docker runner
-must reach that same database and its advertised addresses. For a host-local
-MongoDB on Docker Desktop, pass `runner_endpoint="mongodb://host.docker.internal:27017"`
-alongside the host connection. For a remote database, a routable URI usually works
-directly. Managed deployments automatically share the database container's network
-namespace. The runner accepts standard MongoDB URIs and DNS seed lists such as
-`mongodb+srv://cluster.example.com/`. Both the host and runner must be able to
-resolve the SRV records. The driver reads authentication options from DNS TXT
-records unless the URI specifies them. If your SRV deployment uses database-specific
-authentication without a TXT authSource, specify the authentication database with
-`authSource` when the benchmark database differs from it.
-Keep credentials on the connection object. Endpoint overrides select the route.
+Use a dedicated database with an empty `usertable` collection. Python and the YCSB container must both reach the same MongoDB server.
 
-Profiles A–F provide defaults. Pass native YCSB workload and binding properties
-through the same mapping in Python or Yanex YAML. For example, use Couchbase's
-query path for single-field updates:
+This example uses Docker Desktop. Python connects to MongoDB on the host through `localhost`.
+Inside the container, `localhost` refers to the container itself. Use `runner_endpoint` to give YCSB the host address.
 
 ```python
-workload = ycsb.Workload(
-    "B", 1000, 5000, properties={"writeallfields": False, "couchbase.kv": False}
+from bondi import MongoConnection
+from bondi_benchmarks import ycsb
+
+connection = MongoConnection("mongodb://localhost:27017")
+benchmark = ycsb.YCSB.from_connection(
+    connection,
+    database="ycsb_lab",
+    runner_endpoint="mongodb://host.docker.internal:27017",
 )
+workload = ycsb.Workload("C", record_count=1000, operation_count=5000, threads=4)
+
+benchmark.load(workload)
+result = benchmark.run(workload)
+print(result.throughput_ops_s, "operations per second")
 ```
 
-```yaml
-workload:
-  profile: B
-  record_count: 1000
-  operation_count: 5000
-  properties:
-    writeallfields: false
-    couchbase.kv: false
-```
-
-Use literal property names and scalar values. Both phases receive the properties.
-YCSB and the selected binding interpret them. The runner checks the result format and the number of completed operations.
-A different output format or an early stop can cause an error.
-Keep credentials on the connection. The runner saves workload properties in the artifacts.
-Use the typed arguments for counts, threads and target rate, and the target object
-for the database connection. Set `target_ops_s` to rate-limit the run and
-`load(workload, threads=...)` to override load concurrency.
-Workload E on Couchbase requires a suitable index and the Query service. Provision
-the index separately. D and E add records, so account for initial state across repetitions.
+If the connection address works from both Python and the container, omit `runner_endpoint`.
