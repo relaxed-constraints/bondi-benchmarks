@@ -16,6 +16,8 @@ nav:
     - Results: benchmarks/ycsb/results.md
 - API Reference:
   - YCSB: api/ycsb.md
+- Development:
+  - Contributor guide: development.md
 plugins:
   mkdocstrings:
     handlers:

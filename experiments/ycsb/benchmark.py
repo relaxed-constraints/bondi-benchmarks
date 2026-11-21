@@ -29,8 +29,8 @@ def main():
     database = params.get("database")
     if not isinstance(params.get("workload"), dict) or not database:
         raise ValueError(
-            "A database and workload mapping are required. From experiments/, "
-            "run yanex run ycsb/run.py -c ycsb/configs/default.yaml -p backend=couchbase"
+            "A database and workload mapping are required. From experiments/ycsb/, "
+            "run yanex run benchmark.py -c configs/default.yaml -p backend=couchbase"
         )
 
     workload = ycsb.Workload(**params["workload"])

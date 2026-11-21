@@ -31,9 +31,9 @@ def test_disposable_deployment(tmp_path, monkeypatch, backend, fail):
     monkeypatch.setattr(deployment, f"deploy_{backend}", deploy)
     factory = Mock()
     monkeypatch.setattr(ycsb.YCSB, "from_deployment", factory)
-    main = runpy.run_path(str(Path(__file__).resolve().parents[2] / "experiments/ycsb/run.py"))[
-        "main"
-    ]
+    main = runpy.run_path(
+        str(Path(__file__).resolve().parents[2] / "experiments/ycsb/benchmark.py")
+    )["main"]
 
     if fail:
         factory.return_value.run.side_effect = RuntimeError("benchmark failure")
@@ -59,9 +59,9 @@ def test_standalone_uses_fallback_id(monkeypatch):
     monkeypatch.setattr(deployment, "deploy_mongodb", deploy)
     factory = Mock()
     monkeypatch.setattr(ycsb.YCSB, "from_deployment", factory)
-    main = runpy.run_path(str(Path(__file__).resolve().parents[2] / "experiments/ycsb/run.py"))[
-        "main"
-    ]
+    main = runpy.run_path(
+        str(Path(__file__).resolve().parents[2] / "experiments/ycsb/benchmark.py")
+    )["main"]
     main()
     first = deploy.call_args.args[0]
     suffix = first.removeprefix("ycsb-mongodb-")
