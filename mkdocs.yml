@@ -11,8 +11,8 @@ nav:
 - Installation: installation.md
 - Benchmarks:
   - YCSB:
-    - First experiment: benchmarks/ycsb/experiments.md
     - Python guide: benchmarks/ycsb/python.md
+    - First experiment: benchmarks/ycsb/experiments.md
     - Results: benchmarks/ycsb/results.md
 - API Reference:
   - YCSB: api/ycsb.md
